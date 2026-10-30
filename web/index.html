@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="app-version" content="24">
+<meta name="theme-color" content="#0f0f14" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="复盘吧">
+<link rel="manifest" href="/static/manifest.json">
+<link rel="apple-touch-icon" href="/static/icon-192.png">
+<script>
+window.__err = "";
+window.addEventListener("error", (e) => {
+  window.__err = "ERR: " + (e.message || "") + " @" + (e.filename || "").split("/").pop() + ":" + e.lineno;
+  document.title = window.__err;
+});
+window.addEventListener("unhandledrejection", (e) => {
+  const m = (e.reason && (e.reason.stack || e.reason.message)) || String(e.reason);
+  window.__err = "REJ: " + m.split("\n")[0];
+  document.title = window.__err;
+});
+</script>
+
+<title>复盘吧 · ThemeHunter</title>
+<link rel="stylesheet" href="/static/style.css?v=36">
+<script src="/static/anime.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="brand">复盘吧 <span class="sub">ThemeHunter</span></div>
+  <div class="actions">
+    <div class="date-field" id="dateField" title="选择交易日">
+      <input type="date" id="tradeDate" title="选择交易日">
+      <span class="date-suffix" id="dateSuffix"></span>
+      <span class="date-data" id="dateData" hidden></span>
+    </div>
+    <div class="search-field">
+      <input id="stockSearch" type="search" placeholder="查股票 代码/名称" autocomplete="off"
+             title="输入股票代码或名称，实时匹配涨停原因、所属题材与同花顺概念">
+      <div class="search-suggest" id="searchSuggest"></div>
+    </div>
+    <button id="btnRun" class="primary" title="采集→聚类→龙头排序→导出">开始复盘</button>
+    <button id="btnClipboard" title="把题材成分股送进同花顺：粘贴 / 生成 TXT / 生成图片">导入同花顺</button>
+    <button id="btnMore" class="more-btn" aria-expanded="false" aria-controls="morePanel"
+            title="更多操作">⋯</button>
+
+    <div class="more-panel" id="morePanel">
+      <div class="dropdown" id="historyDropdown">
+        <button class="dropdown-btn" id="historyBtn" title="切换查看历史交易日的复盘结果">历史回顾 ▾</button>
+        <div class="dropdown-menu" id="historyMenu"></div>
+      </div>
+      <button id="btnFetch" title="拉取当日涨停池+炸板池+10cm异动+连板更新">采集数据</button>
+      <button id="btnBackfill" title="回填近30个交易日的涨停/题材数据">历史回填</button>
+      <button id="btnFramework" title="查看/编辑题材框架（开盘啦层级表），可查询任意词归到哪个板块">题材框架</button>
+      <button id="btnUpdate" class="update-btn" hidden>更新</button>
+      <button id="btnTheme" class="theme-btn" title="切换浅色/深色模式">☾</button>
+    </div>
+  </div>
+  <div class="status" id="statusBar">就绪</div>
+</header>
+
+<main>
+  <section class="left">
+    <div class="breadth" id="breadth">
+      <div class="bd-card" id="bdUpCard">
+        <span class="bd-label">涨幅 ≥9.90%</span>
+        <span class="bd-num" id="bdUp">-</span>
+      </div>
+      <div class="bd-card" id="bdZtCard">
+        <span class="bd-label">涨停</span>
+        <span class="bd-num" id="bdZt">-</span>
+      </div>
+      <div class="bd-card" id="bdTechCard">
+        <span class="bd-label">创/科/北 &gt;10%</span>
+        <span class="bd-num" id="bdTech">-</span>
+      </div>
+      <div class="bd-card" id="bdAssignedCard">
+        <span class="bd-label">已归纳</span>
+        <span class="bd-num" id="bdAssigned">-</span>
+      </div>
+    </div>
+    <div class="bd-hint" id="bdHint"></div>
+    <h2>题材强度 <span id="themeCount"></span></h2>
+    <div class="theme-scroll">
+      <div id="themeList"></div>
+    </div>
+    <div class="scroll-hint" id="themeScrollHint">↓ 向下滑动查看更多题材</div>
+    <div class="unassigned" id="unassignedBox">
+      <div class="unassigned-head">未归纳个股 <b id="unassignedCount">0</b></div>
+      <div id="unassignedList"></div>
+    </div>
+    <div class="isolated" id="isolatedBox" hidden>
+      <div class="isolated-head">
+        <button id="btnIsoToggle" class="iso-toggle" title="展开/收起">
+          <span class="iso-caret">▸</span><span>独立个股题材</span>
+        </button>
+        <b id="isolatedCount">0</b>
+        <span class="isolated-hint">1-2 只 · 未在其他板块出现</span>
+      </div>
+      <div id="isolatedList" hidden></div>
+    </div>
+  </section>
+
+  <section class="right">
+    <div class="right-head">
+      <h2 id="leaderTitle">龙头梯队 <span class="hint"><span class="only-wide">← 点击左侧题材查看</span><span class="only-narrow">↑ 先选上方题材</span></span></h2>
+      <div class="right-tools">
+        <button id="btnCandidates" title="查看当日池内、属于该主线外围概念但未纳入的个股">补全候选</button>
+      </div>
+    </div>
+    <table id="leaderTable">
+      <thead>
+        <tr>
+          <th>排序</th><th>股票</th><th>连板</th><th>涨幅</th>
+          <th>封单占比</th><th>涨停时间</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+</main>
+
+<!-- 个股查询 -->
+<div id="searchModal" class="modal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3 id="searchTitle">个股查询</h3>
+      <button id="btnCloseSearch" class="modal-close" title="关闭">×</button>
+    </div>
+    <div class="modal-body" id="searchBody"></div>
+  </div>
+</div>
+
+<!-- 导入同花顺：粘贴 / 生成 TXT / 生成图片 -->
+<div id="thsModal" class="modal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3>导入同花顺 <span class="hint" id="thsSub"></span></h3>
+      <button id="btnCloseThs" class="modal-close" title="关闭">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="seg" id="thsScope">
+        <button class="seg-btn on" data-scope="single">当前题材</button>
+        <button class="seg-btn" data-scope="all">全部题材</button>
+      </div>
+
+      <div class="ths-sec">
+        <div class="ths-sec-head">方式 1 · 粘贴 <span class="hint">同花顺一次粘贴有上限，自动分组</span></div>
+        <p class="clip-hint" id="clipHint"></p>
+        <div id="clipGroups"></div>
+        <div class="ths-actions">
+          <button id="btnClipNext" class="primary">复制第 1 组</button>
+        </div>
+      </div>
+
+      <div class="ths-sec">
+        <div class="ths-sec-head">方式 2 · 导出文件 <span class="hint">自选股 → 添加股票 → 上传 txt / 图片</span></div>
+        <label class="ths-opt" id="thsIncludeRow"><input type="checkbox" id="thsIncludeSingle"> 只含 1 只的题材也导出</label>
+        <label class="ths-opt" id="thsRevealRow"><input type="checkbox" id="thsReveal" checked> 生成后打开文件夹</label>
+        <div class="ths-actions">
+          <button id="thsTxtBtn" class="primary">生成 TXT</button>
+          <button id="thsImgBtn">生成图片</button>
+          <button id="thsOpenBtn" class="ghost">打开文件夹</button>
+        </div>
+        <div id="thsFiles"></div>
+        <div id="thsProgress" class="ths-note"></div>
+        <div id="thsHint" class="ths-note"></div>
+      </div>
+
+      <p class="ths-note">
+        前置设置：同花顺「工具 → 系统设置 → 其他设置」勾选「复制文本时，自动识别股票代码」。
+        图片只放 6 位数字、一张不超过 12 只，识别率最高。
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- 手动归纳到题材 -->
+<div id="assignModal" class="modal">
+  <div class="modal-card narrow">
+    <div class="modal-head">
+      <h3>归纳到题材 <span class="hint" id="assignSub"></span></h3>
+      <button id="btnCloseAssign" class="modal-close" title="关闭">×</button>
+    </div>
+    <div class="modal-body">
+      <input id="assignFilter" type="search" placeholder="搜索题材名" autocomplete="off">
+      <div id="assignList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 题材框架管理（开盘啦层级表） -->
+<div id="fwModal" class="modal">
+  <div class="modal-card wide">
+    <div class="modal-head">
+      <h3>题材框架 <span class="hint" id="fwStats"></span></h3>
+      <button id="btnCloseFw" class="modal-close" title="关闭">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="fw-search">
+        <input id="fwQuery" type="search" autocomplete="off"
+               placeholder="输入任意词看它归到哪个板块（如 冰雪旅游保障），或搜索题材名">
+        <div class="fw-match" id="fwMatch"></div>
+      </div>
+      <div class="fw-add">
+        <input id="fwNewTheme" placeholder="一级题材（如 体育产业）" autocomplete="off">
+        <input id="fwNewSub" placeholder="细分词（可留空）" autocomplete="off">
+        <button id="btnFwAdd" class="primary">新增</button>
+      </div>
+      <div class="fw-actions">
+        <button id="btnFwImport" title="用框架文件重导，只替换框架数据，手工添加的保留">重导框架</button>
+        <button id="btnFwExport" title="导出当前全量题材树（含手工）为 YAML">导出 YAML</button>
+        <button id="btnFwSync" title="从发布方拉取最新题材框架（朋友端用，会覆盖本地框架）">同步框架</button>
+        <label class="fw-filter"><input type="checkbox" id="fwOnlyManual"> 只看手工添加</label>
+      </div>
+      <div class="fw-loose">
+        <div class="fw-loose-head">
+          <button id="btnFwLooseToggle" class="fw-loose-toggle">
+            <span class="fw-caret">▸</span> 未归类词
+          </button>
+          <b id="fwLooseCount">0</b>
+          <span class="fw-note">归不到大板块的孤词，选个板块挂上去，以后自动生效</span>
+        </div>
+        <div class="fw-loose-list" id="fwLooseList" hidden></div>
+      </div>
+      <datalist id="fwThemeOptions"></datalist>
+      <div id="fwList"></div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/app.js?v=36"></script>
+</body>
+</html>

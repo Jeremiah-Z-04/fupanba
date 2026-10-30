@@ -1,0 +1,7 @@
+# -*- coding: utf-8 -*-
+# 服务器端依赖：只需要这三个。
+# akshare / pandas 在服务器上完全用不到 —— 数据源已固定为同花顺官方 API
+# （config/default.yaml 里 datasource.priority 只有 fuyao）。
+pyyaml>=6.0
+fastapi>=0.115
+uvicorn>=0.30

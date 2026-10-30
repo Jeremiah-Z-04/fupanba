@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="app-version" content="2">
+<meta name="theme-color" content="#0f0f14" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="复盘吧">
+<meta name="description" content="短线题材复盘：题材强度、龙头梯队、同花顺导入">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<title>复盘吧 · ThemeHunter</title>
+<link rel="stylesheet" href="./style.css?v=2">
+</head>
+<body class="static-page">
+<header>
+  <div class="head-row">
+    <div class="brand">复盘吧 <span class="sub">ThemeHunter</span></div>
+    <div class="date-field">
+      <select id="dateSel" title="切换交易日"></select>
+    </div>
+  </div>
+  <div class="head-row">
+    <button id="btnPrev" title="更早的交易日">‹</button>
+    <button id="btnNext" title="更新的交易日">›</button>
+    <button id="btnThs" class="primary" title="生成同花顺导入用的代码图 / TXT">导入同花顺</button>
+  </div>
+  <div class="status" id="statusBar">加载中…</div>
+</header>
+
+<main>
+  <section class="left">
+    <div class="breadth" id="breadth">
+      <div class="bd-card" id="bdUpCard">
+        <span class="bd-label">涨幅 ≥9.90%</span>
+        <span class="bd-num" id="bdUp">-</span>
+      </div>
+      <div class="bd-card" id="bdZtCard">
+        <span class="bd-label">涨停</span>
+        <span class="bd-num" id="bdZt">-</span>
+      </div>
+      <div class="bd-card" id="bdTechCard">
+        <span class="bd-label">创/科/北 &gt;10%</span>
+        <span class="bd-num" id="bdTech">-</span>
+      </div>
+    </div>
+    <div class="bd-hint" id="bdHint"></div>
+    <h2>题材强度 <span id="themeCount"></span></h2>
+    <div id="themeList"></div>
+    <div class="unassigned" id="unassignedBox" hidden>
+      <div class="unassigned-head">未归纳个股 <b id="unassignedCount">0</b></div>
+      <div id="unassignedList"></div>
+    </div>
+  </section>
+
+  <section class="right">
+    <div class="right-head">
+      <h2 id="leaderTitle">龙头梯队 <span class="hint"><span class="only-wide">← 点击左侧题材查看</span><span class="only-narrow">↑ 先选上方题材</span></span></h2>
+    </div>
+    <table id="leaderTable">
+      <thead>
+        <tr>
+          <th>排序</th><th>股票</th><th>连板</th><th>涨幅</th>
+          <th>封单占比</th><th>涨停时间</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+</main>
+
+<div id="thsModal" class="modal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3>导入同花顺 <span class="hint" id="thsSub"></span></h3>
+      <button id="btnCloseThs" class="modal-close" title="关闭">×</button>
+    </div>
+    <div class="modal-body">
+      <p class="ths-note" id="thsSummary"></p>
+      <div class="ths-actions">
+        <button id="thsImgBtn" class="primary">生成图片</button>
+        <button id="thsTxtBtn">生成 TXT</button>
+        <button id="thsCopyBtn">复制代码</button>
+      </div>
+      <div id="thsProgress" class="ths-note"></div>
+      <div id="thsPreview"></div>
+      <p class="ths-note">
+        图片：长按图片 → 存储到照片，再到同花顺「自选股 → 添加股票 → 上传图片」。
+        一张不超过 12 只，识别率最高。
+      </p>
+      <p class="ths-note">
+        TXT / 复制：同花顺「添加股票 → 上传 txt」或直接粘贴。
+        前置设置：同花顺「工具 → 系统设置 → 其他设置」勾选「复制文本时，自动识别股票代码」。
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="./static.js?v=2"></script>
+</body>
+</html>

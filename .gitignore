@@ -1,0 +1,18 @@
+# 本地数据与密钥：绝不入库
+# 注意写成 /data/ 而不是 data/ —— 后者会连 docs/data/ 一起忽略，
+# 导致 GitHub Pages 上没有数据。docs/data/ 是要发布的导出结果。
+/data/
+.env
+config/schemes/*.yaml
+!config/schemes/example_scheme.yaml
+
+__pycache__/
+*.pyc
+*.pyo
+tmp_*.py
+.workbuddy/
+
+build/
+dist/
+release/
+backup/

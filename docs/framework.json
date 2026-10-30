@@ -1,0 +1,6339 @@
+{
+ "version": "9753abfadb82",
+ "count": 785,
+ "families": {
+  "机器人": [
+   "机器人",
+   "具身智能",
+   "物理AI",
+   "灵巧手",
+   "减速器",
+   "丝杠",
+   "电子皮肤",
+   "六维力传感器"
+  ],
+  "汽车零部件": [
+   "汽车零部件",
+   "汽车制动",
+   "汽车轴承",
+   "汽车内饰",
+   "汽车内外饰",
+   "汽车减震",
+   "汽车电子",
+   "汽车物流",
+   "汽车线束",
+   "汽车车桥",
+   "汽车连接器",
+   "汽车热管理",
+   "汽车模组",
+   "整车配套"
+  ],
+  "大消费": [
+   "百货零售",
+   "商贸零售",
+   "连锁零售",
+   "零售促销",
+   "免税退税",
+   "新零售",
+   "全渠道运营",
+   "乳制品",
+   "休闲食品",
+   "饼干食品"
+  ],
+  "三季报增长": [
+   "三季报增长",
+   "三季报预增",
+   "三季报扭亏"
+  ]
+ },
+ "alias": {
+  "食品饮料": "大消费",
+  "旅游": "大消费",
+  "零售": "大消费",
+  "免税": "大消费",
+  "家电": "大消费",
+  "服装家纺": "大消费"
+ },
+ "rows": [
+  {
+   "theme": "3D打印",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 16
+  },
+  {
+   "theme": "AI应用",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "AI应用",
+   "sub": "AIGC",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 6
+  },
+  {
+   "theme": "AI应用",
+   "sub": "AI办公",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 6
+  },
+  {
+   "theme": "AI应用",
+   "sub": "AI医疗",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 6
+  },
+  {
+   "theme": "AI应用",
+   "sub": "AI安全",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 6
+  },
+  {
+   "theme": "AI应用",
+   "sub": "AI审核",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 6
+  },
+  {
+   "theme": "AI应用",
+   "sub": "AI政务",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 6
+  },
+  {
+   "theme": "AI应用",
+   "sub": "AI智能体",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 6
+  },
+  {
+   "theme": "AI应用",
+   "sub": "AI电商",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 6
+  },
+  {
+   "theme": "AI应用",
+   "sub": "AI营销",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 6
+  },
+  {
+   "theme": "AI应用",
+   "sub": "AI视频",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 6
+  },
+  {
+   "theme": "AI应用",
+   "sub": "OpenClaw",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 6
+  },
+  {
+   "theme": "AMD概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 45
+  },
+  {
+   "theme": "ETC",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 169
+  },
+  {
+   "theme": "LED",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 80
+  },
+  {
+   "theme": "MIM",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 30
+  },
+  {
+   "theme": "RCS",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 101
+  },
+  {
+   "theme": "REITs",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 188
+  },
+  {
+   "theme": "SOFC电池",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 46
+  },
+  {
+   "theme": "ST摘帽",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 147
+  },
+  {
+   "theme": "ST板块",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 123
+  },
+  {
+   "theme": "VPN",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 87
+  },
+  {
+   "theme": "VR/AR/MR",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 70
+  },
+  {
+   "theme": "VR/AR/MR",
+   "sub": "空间计算",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 71
+  },
+  {
+   "theme": "esIM",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 83
+  },
+  {
+   "theme": "web3.0",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 137
+  },
+  {
+   "theme": "一带一路",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 117
+  },
+  {
+   "theme": "三季报增长",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 1
+  },
+  {
+   "theme": "上海市",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 96
+  },
+  {
+   "theme": "专精特新",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 24
+  },
+  {
+   "theme": "世界杯概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 124
+  },
+  {
+   "theme": "业绩增长",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 8
+  },
+  {
+   "theme": "两轮车",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 106
+  },
+  {
+   "theme": "中字头",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 186
+  },
+  {
+   "theme": "中报增长",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 36
+  },
+  {
+   "theme": "中欧概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 99
+  },
+  {
+   "theme": "中特估",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 200
+  },
+  {
+   "theme": "中科系",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 62
+  },
+  {
+   "theme": "中船系",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 207
+  },
+  {
+   "theme": "举牌",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 152
+  },
+  {
+   "theme": "乡村振兴",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 163
+  },
+  {
+   "theme": "乡村振兴",
+   "sub": "数字乡村",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 164
+  },
+  {
+   "theme": "云南省",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 205
+  },
+  {
+   "theme": "互联网医疗",
+   "sub": "智慧医疗",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "互联网医疗",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 138
+  },
+  {
+   "theme": "互联网医疗",
+   "sub": "DRG/DIP",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 139
+  },
+  {
+   "theme": "人工智能",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 240
+  },
+  {
+   "theme": "人工智能",
+   "sub": "AI视觉",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 241
+  },
+  {
+   "theme": "人工智能",
+   "sub": "ChatGPT",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 241
+  },
+  {
+   "theme": "人工智能",
+   "sub": "DeepSeek",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 241
+  },
+  {
+   "theme": "人工智能",
+   "sub": "ISP",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 241
+  },
+  {
+   "theme": "人工智能",
+   "sub": "Kimi概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 241
+  },
+  {
+   "theme": "人工智能",
+   "sub": "MCP",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 241
+  },
+  {
+   "theme": "人工智能",
+   "sub": "MLOps",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 241
+  },
+  {
+   "theme": "人工智能",
+   "sub": "MaaS",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 241
+  },
+  {
+   "theme": "人工智能",
+   "sub": "多模态概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 241
+  },
+  {
+   "theme": "人工智能",
+   "sub": "神经网络",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 241
+  },
+  {
+   "theme": "人工智能",
+   "sub": "腾讯系AI",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 241
+  },
+  {
+   "theme": "人工智能",
+   "sub": "阶跃星辰",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 241
+  },
+  {
+   "theme": "人工智能",
+   "sub": "阿里系AI",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 241
+  },
+  {
+   "theme": "仪器仪表",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 50
+  },
+  {
+   "theme": "仪器仪表",
+   "sub": "VNA",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 51
+  },
+  {
+   "theme": "传感器",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "低价股",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 158
+  },
+  {
+   "theme": "低空经济",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 82
+  },
+  {
+   "theme": "低空经济",
+   "sub": "通感一体化",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 83
+  },
+  {
+   "theme": "低空经济",
+   "sub": "飞行汽车",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 83
+  },
+  {
+   "theme": "体育产业",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 232
+  },
+  {
+   "theme": "体育产业",
+   "sub": "冰雪产业",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 233
+  },
+  {
+   "theme": "体育产业",
+   "sub": "户外运动",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 233
+  },
+  {
+   "theme": "体育产业",
+   "sub": "足球概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 233
+  },
+  {
+   "theme": "保健品",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 166
+  },
+  {
+   "theme": "保健品",
+   "sub": "NMN",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 167
+  },
+  {
+   "theme": "保健品",
+   "sub": "麦角硫因",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 167
+  },
+  {
+   "theme": "保险",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 202
+  },
+  {
+   "theme": "储气罐",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 54
+  },
+  {
+   "theme": "储能",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 12
+  },
+  {
+   "theme": "储能",
+   "sub": "PCS设备",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 13
+  },
+  {
+   "theme": "储能",
+   "sub": "便携式储能",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 13
+  },
+  {
+   "theme": "储能",
+   "sub": "储能EPC",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 13
+  },
+  {
+   "theme": "储能",
+   "sub": "储能热管理",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 13
+  },
+  {
+   "theme": "储能",
+   "sub": "储能电池厂商",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 13
+  },
+  {
+   "theme": "储能",
+   "sub": "储能电池材料",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 13
+  },
+  {
+   "theme": "储能",
+   "sub": "储能电网",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 13
+  },
+  {
+   "theme": "储能",
+   "sub": "储能零部件",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 13
+  },
+  {
+   "theme": "储能",
+   "sub": "光热储能",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 13
+  },
+  {
+   "theme": "储能",
+   "sub": "华为储能",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 13
+  },
+  {
+   "theme": "储能",
+   "sub": "工商业储能",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 13
+  },
+  {
+   "theme": "储能",
+   "sub": "抽水蓄能",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 13
+  },
+  {
+   "theme": "储能",
+   "sub": "空气储能",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 13
+  },
+  {
+   "theme": "元器件",
+   "sub": "分销",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "元器件",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 15
+  },
+  {
+   "theme": "元器件",
+   "sub": "晶体振荡器",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 16
+  },
+  {
+   "theme": "元器件",
+   "sub": "电阻电容",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 16
+  },
+  {
+   "theme": "元器件",
+   "sub": "超级电容",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 16
+  },
+  {
+   "theme": "元器件",
+   "sub": "钽电容",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 16
+  },
+  {
+   "theme": "元宇宙",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 84
+  },
+  {
+   "theme": "元宇宙",
+   "sub": "数字孪生",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 85
+  },
+  {
+   "theme": "光伏",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 104
+  },
+  {
+   "theme": "光伏",
+   "sub": "BC电池",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "POE胶膜",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "TOPCon光伏支架",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "光伏EPC",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "光伏玻璃",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "光伏硅片",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "光伏组件",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "光伏背板",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "光伏胶膜",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "光伏设备",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "光伏银浆",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "分布式光伏",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "太空光伏",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "异质结电池",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "石英坩埚",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "硅料",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "逆变器",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "钙钛矿电池",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光伏",
+   "sub": "铜电镀",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "光储充一体化",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 112
+  },
+  {
+   "theme": "光学镜头",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 58
+  },
+  {
+   "theme": "光热发电",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 159
+  },
+  {
+   "theme": "免税",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 0,
+   "note": "",
+   "sort_order": 201
+  },
+  {
+   "theme": "养老概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 22
+  },
+  {
+   "theme": "内蒙古自治区",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 143
+  },
+  {
+   "theme": "再融资",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 102
+  },
+  {
+   "theme": "军工",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 236
+  },
+  {
+   "theme": "军工",
+   "sub": "军工AI",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 237
+  },
+  {
+   "theme": "军工",
+   "sub": "军工信息",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 237
+  },
+  {
+   "theme": "军工",
+   "sub": "军工材料",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 237
+  },
+  {
+   "theme": "军工",
+   "sub": "军工电子",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 237
+  },
+  {
+   "theme": "军工",
+   "sub": "军用雷达",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 237
+  },
+  {
+   "theme": "军工",
+   "sub": "军贸",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 237
+  },
+  {
+   "theme": "军工",
+   "sub": "导弹",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 237
+  },
+  {
+   "theme": "军工",
+   "sub": "成飞概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 237
+  },
+  {
+   "theme": "军工",
+   "sub": "数据链",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 237
+  },
+  {
+   "theme": "军工",
+   "sub": "航空发动机",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 237
+  },
+  {
+   "theme": "农业",
+   "sub": "百草枯",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "农业",
+   "sub": "采棉机",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "农业",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 227
+  },
+  {
+   "theme": "农业",
+   "sub": "供销社",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "农业",
+   "sub": "养殖业",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "农业",
+   "sub": "兽药",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "农业",
+   "sub": "农机",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "农业",
+   "sub": "农药",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "农业",
+   "sub": "动物疫苗",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "农业",
+   "sub": "化肥",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "农业",
+   "sub": "尿素",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "农业",
+   "sub": "棉花",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "农业",
+   "sub": "水产品",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "农业",
+   "sub": "猪肉",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "农业",
+   "sub": "白糖",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "农业",
+   "sub": "种植业",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "农业",
+   "sub": "饲料",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "农业",
+   "sub": "鸡肉",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "减速器",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 37
+  },
+  {
+   "theme": "创投",
+   "sub": "科创投资",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "创投",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 131
+  },
+  {
+   "theme": "包装印刷",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 100
+  },
+  {
+   "theme": "化工",
+   "sub": "乳酸",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "化工",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 47
+  },
+  {
+   "theme": "化工",
+   "sub": "PTFE",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "TMA",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "制冷剂",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "化纤",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "可降解概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "塑料",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "尼古丁",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "有机硅",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "染料",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "橡胶",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "氟化工",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "氢氟酸",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "涤纶",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "炭黑",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "烧碱",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "煤化工",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "环氧丙烷",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "环氧树脂",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "玻纤",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "甲醇",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "电石",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "硫酸",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "磷化工",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "纯碱",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "聚丙烯",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "聚氨酯",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "钛白粉",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "化工",
+   "sub": "阻燃剂",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 48
+  },
+  {
+   "theme": "北交所",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 25
+  },
+  {
+   "theme": "北京市",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 129
+  },
+  {
+   "theme": "医疗器械",
+   "sub": "体外诊断",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "医疗器械",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 32
+  },
+  {
+   "theme": "医疗器械",
+   "sub": "呼吸机",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 33
+  },
+  {
+   "theme": "医疗器械",
+   "sub": "血氧仪",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 33
+  },
+  {
+   "theme": "医美",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 142
+  },
+  {
+   "theme": "医药",
+   "sub": "AI制药",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30 第二批",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "mRNA原料酶",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "中成药",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "分子砌块",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "医药外包",
+   "source": "manual",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "品牌运营",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "复杂制剂",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "抗体偶联",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "抗体研发",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30 第三批",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "智能制药",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "牛磺酸",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "西瓜霜",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30 第二批",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "重组蛋白",
+   "source": "manual",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "零缺陷检查",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30 第二批",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 6
+  },
+  {
+   "theme": "医药",
+   "sub": "CDMO",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "CRO",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "SPD",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "中药",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "仿制药",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "减肥药",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "创新药",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "医药出海",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "医药零售",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "原料药",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "合成生物",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "基因疗法",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "干细胞",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "止咳药",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "流感",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "细胞治疗",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "维生素",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "肝炎概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "肝素",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "阿尔茨海默",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "医药",
+   "sub": "降压药",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "华为概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 76
+  },
+  {
+   "theme": "华为概念",
+   "sub": "华为手机",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 77
+  },
+  {
+   "theme": "华为概念",
+   "sub": "华为昇腾",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 77
+  },
+  {
+   "theme": "华为概念",
+   "sub": "华为鲲鹏",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 77
+  },
+  {
+   "theme": "华为概念",
+   "sub": "星闪概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 77
+  },
+  {
+   "theme": "华为概念",
+   "sub": "鸿蒙概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 77
+  },
+  {
+   "theme": "华为海思",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 52
+  },
+  {
+   "theme": "卫星导航",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 69
+  },
+  {
+   "theme": "卫生护理",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 171
+  },
+  {
+   "theme": "压缩机",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 86
+  },
+  {
+   "theme": "发电机",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 71
+  },
+  {
+   "theme": "发电机",
+   "sub": "柴油发电机",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 72
+  },
+  {
+   "theme": "可转债",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 170
+  },
+  {
+   "theme": "商业航天",
+   "sub": "卫星通信终端",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "商业航天",
+   "sub": "激光通信投资",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "商业航天",
+   "sub": "空天信息",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "商业航天",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 7
+  },
+  {
+   "theme": "四川省",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 109
+  },
+  {
+   "theme": "国产软件",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 233
+  },
+  {
+   "theme": "国有企业",
+   "sub": "温州国资",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30 第三批",
+   "sort_order": 0
+  },
+  {
+   "theme": "国有企业",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 167
+  },
+  {
+   "theme": "国有企业",
+   "sub": "上海国资",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 168
+  },
+  {
+   "theme": "国有企业",
+   "sub": "地方国企",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 168
+  },
+  {
+   "theme": "国有企业",
+   "sub": "央企",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 168
+  },
+  {
+   "theme": "国有企业",
+   "sub": "深圳国资",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 168
+  },
+  {
+   "theme": "国有企业",
+   "sub": "湖北国资",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 168
+  },
+  {
+   "theme": "在线办公",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 184
+  },
+  {
+   "theme": "地产链",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 209
+  },
+  {
+   "theme": "地产链",
+   "sub": "建材",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 210
+  },
+  {
+   "theme": "地产链",
+   "sub": "房地产",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 210
+  },
+  {
+   "theme": "地产链",
+   "sub": "房屋检测",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 210
+  },
+  {
+   "theme": "地产链",
+   "sub": "物业服务",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 210
+  },
+  {
+   "theme": "地产链",
+   "sub": "电梯概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 210
+  },
+  {
+   "theme": "地产链",
+   "sub": "装修家具",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 210
+  },
+  {
+   "theme": "垃圾分类",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 114
+  },
+  {
+   "theme": "垃圾发电",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 145
+  },
+  {
+   "theme": "培育钻石",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 59
+  },
+  {
+   "theme": "基础建设",
+   "sub": "混凝土装备",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "基础建设",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 229
+  },
+  {
+   "theme": "基础建设",
+   "sub": "乌克兰概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 230
+  },
+  {
+   "theme": "基础建设",
+   "sub": "公路运营",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 230
+  },
+  {
+   "theme": "基础建设",
+   "sub": "工程机械",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 230
+  },
+  {
+   "theme": "基础建设",
+   "sub": "建筑节能",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 230
+  },
+  {
+   "theme": "基础建设",
+   "sub": "民用爆破",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 230
+  },
+  {
+   "theme": "基础建设",
+   "sub": "水利",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 230
+  },
+  {
+   "theme": "基础建设",
+   "sub": "水泥",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 230
+  },
+  {
+   "theme": "基础建设",
+   "sub": "装配式建筑",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 230
+  },
+  {
+   "theme": "外卖概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 153
+  },
+  {
+   "theme": "外贸",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 107
+  },
+  {
+   "theme": "外贸",
+   "sub": "东盟自贸区",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 108
+  },
+  {
+   "theme": "外贸",
+   "sub": "中日韩贸易",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 108
+  },
+  {
+   "theme": "外贸",
+   "sub": "贬值受益",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 108
+  },
+  {
+   "theme": "外贸",
+   "sub": "跨境电商",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 108
+  },
+  {
+   "theme": "外贸",
+   "sub": "转口贸易",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 108
+  },
+  {
+   "theme": "大消费",
+   "sub": "",
+   "source": "manual",
+   "enabled": 1,
+   "note": "用户新建：大消费",
+   "sort_order": 0
+  },
+  {
+   "theme": "大消费",
+   "sub": "旅游",
+   "source": "manual",
+   "enabled": 1,
+   "note": "用户指定",
+   "sort_order": 1
+  },
+  {
+   "theme": "大消费",
+   "sub": "酒店",
+   "source": "manual",
+   "enabled": 1,
+   "note": "用户指定",
+   "sort_order": 2
+  },
+  {
+   "theme": "大消费",
+   "sub": "零售百货",
+   "source": "manual",
+   "enabled": 1,
+   "note": "用户指定",
+   "sort_order": 3
+  },
+  {
+   "theme": "大消费",
+   "sub": "食品饮料",
+   "source": "manual",
+   "enabled": 1,
+   "note": "用户指定",
+   "sort_order": 4
+  },
+  {
+   "theme": "大消费",
+   "sub": "零售",
+   "source": "manual",
+   "enabled": 1,
+   "note": "原一级题材并入",
+   "sort_order": 5
+  },
+  {
+   "theme": "大消费",
+   "sub": "免税",
+   "source": "manual",
+   "enabled": 1,
+   "note": "原一级题材并入",
+   "sort_order": 6
+  },
+  {
+   "theme": "大消费",
+   "sub": "家电",
+   "source": "manual",
+   "enabled": 1,
+   "note": "原一级题材并入",
+   "sort_order": 7
+  },
+  {
+   "theme": "大消费",
+   "sub": "服装家纺",
+   "source": "manual",
+   "enabled": 1,
+   "note": "原一级题材并入",
+   "sort_order": 8
+  },
+  {
+   "theme": "大消费",
+   "sub": "酒店扩张",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 旅游",
+   "sort_order": 9
+  },
+  {
+   "theme": "大消费",
+   "sub": "中式面点",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 食品饮料",
+   "sort_order": 10
+  },
+  {
+   "theme": "大消费",
+   "sub": "低温鲜奶",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 食品饮料",
+   "sort_order": 11
+  },
+  {
+   "theme": "大消费",
+   "sub": "小笼包",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 食品饮料",
+   "sort_order": 12
+  },
+  {
+   "theme": "大消费",
+   "sub": "矿泉水",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 食品饮料",
+   "sort_order": 13
+  },
+  {
+   "theme": "大消费",
+   "sub": "红枣龙头",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 食品饮料",
+   "sort_order": 14
+  },
+  {
+   "theme": "大消费",
+   "sub": "药食同源",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 食品饮料",
+   "sort_order": 15
+  },
+  {
+   "theme": "大消费",
+   "sub": "黑色食养",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 食品饮料",
+   "sort_order": 16
+  },
+  {
+   "theme": "大消费",
+   "sub": "乳业",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 食品饮料",
+   "sort_order": 17
+  },
+  {
+   "theme": "大消费",
+   "sub": "人造肉",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 食品饮料",
+   "sort_order": 18
+  },
+  {
+   "theme": "大消费",
+   "sub": "代糖概念",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 食品饮料",
+   "sort_order": 19
+  },
+  {
+   "theme": "大消费",
+   "sub": "预制菜",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 食品饮料",
+   "sort_order": 20
+  },
+  {
+   "theme": "大消费",
+   "sub": "农批市场",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 零售",
+   "sort_order": 21
+  },
+  {
+   "theme": "大消费",
+   "sub": "鸣鸣很忙",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 零售",
+   "sort_order": 22
+  },
+  {
+   "theme": "大消费",
+   "sub": "牛仔布",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 服装家纺",
+   "sort_order": 23
+  },
+  {
+   "theme": "大消费",
+   "sub": "高端女装",
+   "source": "manual",
+   "enabled": 1,
+   "note": "来自 服装家纺",
+   "sort_order": 24
+  },
+  {
+   "theme": "大飞机",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 68
+  },
+  {
+   "theme": "大麻",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 165
+  },
+  {
+   "theme": "天津自贸区",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 140
+  },
+  {
+   "theme": "天然气",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 130
+  },
+  {
+   "theme": "字节概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "宁夏回族自治区",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 178
+  },
+  {
+   "theme": "安防",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 75
+  },
+  {
+   "theme": "实控人变更",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 224
+  },
+  {
+   "theme": "宠物经济",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 203
+  },
+  {
+   "theme": "家电",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 0,
+   "note": "",
+   "sort_order": 21
+  },
+  {
+   "theme": "工业气体",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 60
+  },
+  {
+   "theme": "平台经济",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 162
+  },
+  {
+   "theme": "平台经济",
+   "sub": "互联网营销",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 163
+  },
+  {
+   "theme": "平台经济",
+   "sub": "小红书概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 163
+  },
+  {
+   "theme": "平台经济",
+   "sub": "抖音小店",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 163
+  },
+  {
+   "theme": "平台经济",
+   "sub": "拼多多概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 163
+  },
+  {
+   "theme": "平台经济",
+   "sub": "电子商务",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 163
+  },
+  {
+   "theme": "年报增长",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 199
+  },
+  {
+   "theme": "年报预增",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 103
+  },
+  {
+   "theme": "并购重组",
+   "sub": "赛德盛并购",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "并购重组",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 98
+  },
+  {
+   "theme": "幽门螺杆菌",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 90
+  },
+  {
+   "theme": "广东省",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 79
+  },
+  {
+   "theme": "广电网",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 73
+  },
+  {
+   "theme": "广西壮族自治区",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 148
+  },
+  {
+   "theme": "彩票概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 164
+  },
+  {
+   "theme": "成人用品",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 43
+  },
+  {
+   "theme": "成渝经济圈",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 193
+  },
+  {
+   "theme": "打印机",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 61
+  },
+  {
+   "theme": "振兴东北",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 215
+  },
+  {
+   "theme": "操作系统",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 92
+  },
+  {
+   "theme": "教育",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 235
+  },
+  {
+   "theme": "教育",
+   "sub": "在线教育",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 236
+  },
+  {
+   "theme": "教育",
+   "sub": "职业教育",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 236
+  },
+  {
+   "theme": "数字经济",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 175
+  },
+  {
+   "theme": "数字经济",
+   "sub": "NFT概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "RDA概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "RWA",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "信创",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "区块链",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "大数据",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "数字政务",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "数字水印",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "数字货币",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "数据安全",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "数据确权",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "数据要素",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "时空大数据",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "物联网",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "电子证照",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "移动支付",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "稳定币",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "网络安全",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "数字经济",
+   "sub": "量子科技",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "文创产品",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 139
+  },
+  {
+   "theme": "文创产品",
+   "sub": "卡牌概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 140
+  },
+  {
+   "theme": "文创产品",
+   "sub": "谷子经济",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 140
+  },
+  {
+   "theme": "文化传媒",
+   "sub": "数字营销",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "文化传媒",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 14
+  },
+  {
+   "theme": "文化传媒",
+   "sub": "影视院线",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 15
+  },
+  {
+   "theme": "文化传媒",
+   "sub": "快手概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 15
+  },
+  {
+   "theme": "文化传媒",
+   "sub": "版权",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 15
+  },
+  {
+   "theme": "文化传媒",
+   "sub": "短剧",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 15
+  },
+  {
+   "theme": "新型城镇化",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 151
+  },
+  {
+   "theme": "新型工业化",
+   "sub": "工业母机",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "新型工业化",
+   "sub": "焊接切割设备",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "新型工业化",
+   "sub": "自动化",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "新型工业化",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 206
+  },
+  {
+   "theme": "新材料概念",
+   "sub": "陶瓷纤维",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "新材料概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 10
+  },
+  {
+   "theme": "新材料概念",
+   "sub": "MXD6",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 11
+  },
+  {
+   "theme": "新材料概念",
+   "sub": "PEEK",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 11
+  },
+  {
+   "theme": "新材料概念",
+   "sub": "气凝胶",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 11
+  },
+  {
+   "theme": "新疆",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 157
+  },
+  {
+   "theme": "旅游",
+   "sub": "酒店扩张",
+   "source": "manual",
+   "enabled": 0,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "旅游",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 0,
+   "note": "",
+   "sort_order": 213
+  },
+  {
+   "theme": "旅游",
+   "sub": "酒店",
+   "source": "kpl",
+   "enabled": 0,
+   "note": "",
+   "sort_order": 214
+  },
+  {
+   "theme": "无人机",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 27
+  },
+  {
+   "theme": "智慧停车",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 128
+  },
+  {
+   "theme": "智慧城市",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 122
+  },
+  {
+   "theme": "智慧矿山",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 85
+  },
+  {
+   "theme": "智能交通",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 155
+  },
+  {
+   "theme": "智能家居",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 34
+  },
+  {
+   "theme": "智能电网",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 11
+  },
+  {
+   "theme": "智能电网",
+   "sub": "变压器",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 12
+  },
+  {
+   "theme": "智能电网",
+   "sub": "固态变压器",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 12
+  },
+  {
+   "theme": "智能电网",
+   "sub": "固态断路器",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 12
+  },
+  {
+   "theme": "智能电网",
+   "sub": "柔性直流",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 12
+  },
+  {
+   "theme": "智能电网",
+   "sub": "特高压",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 12
+  },
+  {
+   "theme": "智能电网",
+   "sub": "电气设备",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 12
+  },
+  {
+   "theme": "智能电网",
+   "sub": "电表",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 12
+  },
+  {
+   "theme": "智能电网",
+   "sub": "虚拟电厂",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 12
+  },
+  {
+   "theme": "智能电网",
+   "sub": "超超临界概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 12
+  },
+  {
+   "theme": "智能驾驶",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 56
+  },
+  {
+   "theme": "智能驾驶",
+   "sub": "AEBS",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 57
+  },
+  {
+   "theme": "智能驾驶",
+   "sub": "无人驾驶",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 57
+  },
+  {
+   "theme": "智能驾驶",
+   "sub": "智能座舱",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 57
+  },
+  {
+   "theme": "智能驾驶",
+   "sub": "毫米波雷达",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 57
+  },
+  {
+   "theme": "智能驾驶",
+   "sub": "激光雷达",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 57
+  },
+  {
+   "theme": "智能驾驶",
+   "sub": "车路云",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 57
+  },
+  {
+   "theme": "有色金属",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 237
+  },
+  {
+   "theme": "有色金属",
+   "sub": "白银",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属钨",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属钴",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属钼",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属铅",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属铋",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属铜",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属铝",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属铟",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属铪",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属锆",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属锌",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属锑",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属锗",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属锡",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属锰",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属镁",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "有色金属",
+   "sub": "金属镍",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "服装家纺",
+   "sub": "牛仔布",
+   "source": "manual",
+   "enabled": 0,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "服装家纺",
+   "sub": "高端女装",
+   "source": "manual",
+   "enabled": 0,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "服装家纺",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 0,
+   "note": "",
+   "sort_order": 197
+  },
+  {
+   "theme": "机器人概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 0
+  },
+  {
+   "theme": "机器人概念",
+   "sub": "AGV机器人",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 1
+  },
+  {
+   "theme": "机器人概念",
+   "sub": "众擎机器人",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 1
+  },
+  {
+   "theme": "机器人概念",
+   "sub": "外骨骼机器人",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 1
+  },
+  {
+   "theme": "机器人概念",
+   "sub": "宇树机器人",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 1
+  },
+  {
+   "theme": "机器人概念",
+   "sub": "小米机器人",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 1
+  },
+  {
+   "theme": "机器人概念",
+   "sub": "小鹏机器人",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 1
+  },
+  {
+   "theme": "机器人概念",
+   "sub": "数据采集",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 1
+  },
+  {
+   "theme": "机器人概念",
+   "sub": "智元机器人",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 1
+  },
+  {
+   "theme": "机器人概念",
+   "sub": "机器人传感器",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 1
+  },
+  {
+   "theme": "机器人概念",
+   "sub": "滚珠丝杠",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 1
+  },
+  {
+   "theme": "机器人概念",
+   "sub": "灵巧手",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 1
+  },
+  {
+   "theme": "机场航空",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 146
+  },
+  {
+   "theme": "柔性屏",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 53
+  },
+  {
+   "theme": "核污染概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 113
+  },
+  {
+   "theme": "核电",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 42
+  },
+  {
+   "theme": "核电",
+   "sub": "可控核聚变",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 43
+  },
+  {
+   "theme": "核电",
+   "sub": "钍基熔盐",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 43
+  },
+  {
+   "theme": "次新股",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 29
+  },
+  {
+   "theme": "次新股",
+   "sub": "注册制次新股",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 30
+  },
+  {
+   "theme": "武汉",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 116
+  },
+  {
+   "theme": "民营医院",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 23
+  },
+  {
+   "theme": "氢能源",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 97
+  },
+  {
+   "theme": "氢能源",
+   "sub": "制氢",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 98
+  },
+  {
+   "theme": "氢能源",
+   "sub": "加氢站",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 98
+  },
+  {
+   "theme": "氢能源",
+   "sub": "固态储氢",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 98
+  },
+  {
+   "theme": "氢能源",
+   "sub": "氢气储运",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 98
+  },
+  {
+   "theme": "氢能源",
+   "sub": "氢燃料电池",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 98
+  },
+  {
+   "theme": "氢能源",
+   "sub": "氢能源整车",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 98
+  },
+  {
+   "theme": "氢能源",
+   "sub": "电解槽",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 98
+  },
+  {
+   "theme": "水务",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 135
+  },
+  {
+   "theme": "江苏省",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 72
+  },
+  {
+   "theme": "汽车充电",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 81
+  },
+  {
+   "theme": "汽车充电",
+   "sub": "充电桩",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 82
+  },
+  {
+   "theme": "汽车充电",
+   "sub": "华为超充",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 82
+  },
+  {
+   "theme": "汽车充电",
+   "sub": "换电站",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 82
+  },
+  {
+   "theme": "汽车充电",
+   "sub": "高压快充",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 82
+  },
+  {
+   "theme": "汽车类",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 66
+  },
+  {
+   "theme": "汽车类",
+   "sub": "客运",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 67
+  },
+  {
+   "theme": "汽车类",
+   "sub": "新能源汽车",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 67
+  },
+  {
+   "theme": "汽车类",
+   "sub": "汽车整车",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 67
+  },
+  {
+   "theme": "汽车类",
+   "sub": "汽车服务",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 67
+  },
+  {
+   "theme": "汽车类",
+   "sub": "汽车检测",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 67
+  },
+  {
+   "theme": "汽车类",
+   "sub": "网约车",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 67
+  },
+  {
+   "theme": "汽车类",
+   "sub": "重卡",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 67
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "一体化压铸",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "内外饰",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "华为汽车",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "奇瑞产业链",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "小米汽车",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "小鹏产业链",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "底盘",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "比亚迪产业链",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "汽车热管理",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "汽车电子",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "特斯拉概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "电子后视镜",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "碳陶刹车",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "线控底盘",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "车身及附件",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "轮胎",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "汽车零部件",
+   "sub": "长安汽车概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "浙江",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 91
+  },
+  {
+   "theme": "海南",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 160
+  },
+  {
+   "theme": "海峡两岸",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 230
+  },
+  {
+   "theme": "海洋经济",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 108
+  },
+  {
+   "theme": "海洋经济",
+   "sub": "海工装备",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 109
+  },
+  {
+   "theme": "海洋经济",
+   "sub": "海缆",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 109
+  },
+  {
+   "theme": "消费电子",
+   "sub": "智能存储",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "消费电子",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 26
+  },
+  {
+   "theme": "消费电子",
+   "sub": "小米概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 27
+  },
+  {
+   "theme": "消费电子",
+   "sub": "快充",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 27
+  },
+  {
+   "theme": "消费电子",
+   "sub": "折叠屏",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 27
+  },
+  {
+   "theme": "消费电子",
+   "sub": "无线充电",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 27
+  },
+  {
+   "theme": "消费电子",
+   "sub": "无线耳机",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 27
+  },
+  {
+   "theme": "消费电子",
+   "sub": "苹果概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 27
+  },
+  {
+   "theme": "消费电子",
+   "sub": "钛合金边框",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 27
+  },
+  {
+   "theme": "消防",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 204
+  },
+  {
+   "theme": "深圳",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 88
+  },
+  {
+   "theme": "港口",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 190
+  },
+  {
+   "theme": "游戏",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 19
+  },
+  {
+   "theme": "游戏",
+   "sub": "互动影游",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 20
+  },
+  {
+   "theme": "湖北省",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 105
+  },
+  {
+   "theme": "湖南",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 118
+  },
+  {
+   "theme": "激光",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 63
+  },
+  {
+   "theme": "火电灵活改造",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 120
+  },
+  {
+   "theme": "烟花爆竹",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 127
+  },
+  {
+   "theme": "烟草",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 115
+  },
+  {
+   "theme": "热力",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 156
+  },
+  {
+   "theme": "热泵",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 78
+  },
+  {
+   "theme": "煤炭",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 210
+  },
+  {
+   "theme": "煤炭",
+   "sub": "冶金煤",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 211
+  },
+  {
+   "theme": "煤炭",
+   "sub": "动力煤",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 211
+  },
+  {
+   "theme": "煤炭",
+   "sub": "焦炭",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 211
+  },
+  {
+   "theme": "燃气轮机",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 13
+  },
+  {
+   "theme": "物流",
+   "sub": "仓储",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30 第二批",
+   "sort_order": 0
+  },
+  {
+   "theme": "物流",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 208
+  },
+  {
+   "theme": "物流",
+   "sub": "冷链物流",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 209
+  },
+  {
+   "theme": "物流",
+   "sub": "快递",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 209
+  },
+  {
+   "theme": "物流",
+   "sub": "无人物流",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 209
+  },
+  {
+   "theme": "物流",
+   "sub": "智能物流",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 209
+  },
+  {
+   "theme": "物理AI",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 189
+  },
+  {
+   "theme": "物理AI",
+   "sub": "机器视觉",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 190
+  },
+  {
+   "theme": "环保",
+   "sub": "水处理",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30 第二批",
+   "sort_order": 0
+  },
+  {
+   "theme": "环保",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 214
+  },
+  {
+   "theme": "环保",
+   "sub": "园林",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 215
+  },
+  {
+   "theme": "环保",
+   "sub": "固废处理",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 215
+  },
+  {
+   "theme": "环保",
+   "sub": "土壤修复",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 215
+  },
+  {
+   "theme": "环保",
+   "sub": "污水处理",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 215
+  },
+  {
+   "theme": "环保",
+   "sub": "汽车拆解",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 215
+  },
+  {
+   "theme": "玻璃",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 144
+  },
+  {
+   "theme": "甘肃省",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 183
+  },
+  {
+   "theme": "生物质能",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 33
+  },
+  {
+   "theme": "生育概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 192
+  },
+  {
+   "theme": "生育概念",
+   "sub": "儿童车座椅",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 193
+  },
+  {
+   "theme": "生育概念",
+   "sub": "辅助生殖",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 193
+  },
+  {
+   "theme": "电力",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 38
+  },
+  {
+   "theme": "电力",
+   "sub": "水电",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 39
+  },
+  {
+   "theme": "电力",
+   "sub": "火电",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 39
+  },
+  {
+   "theme": "电力",
+   "sub": "绿色电力",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 39
+  },
+  {
+   "theme": "电子烟",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 161
+  },
+  {
+   "theme": "电子纸",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 65
+  },
+  {
+   "theme": "电机电控",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 51
+  },
+  {
+   "theme": "电源",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 219
+  },
+  {
+   "theme": "疫苗概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 226
+  },
+  {
+   "theme": "病毒防治",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 231
+  },
+  {
+   "theme": "病毒防治",
+   "sub": "抗原检测",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 232
+  },
+  {
+   "theme": "病毒防治",
+   "sub": "抗病毒面料",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 232
+  },
+  {
+   "theme": "病毒防治",
+   "sub": "新冠检测",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 232
+  },
+  {
+   "theme": "病毒防治",
+   "sub": "新冠药概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 232
+  },
+  {
+   "theme": "病毒防治",
+   "sub": "猴痘概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 232
+  },
+  {
+   "theme": "病毒防治",
+   "sub": "疫情监测",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 232
+  },
+  {
+   "theme": "百度概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 125
+  },
+  {
+   "theme": "眼科医疗",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 179
+  },
+  {
+   "theme": "知识产权",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 93
+  },
+  {
+   "theme": "石墨化",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 31
+  },
+  {
+   "theme": "石墨化",
+   "sub": "石墨烯",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 32
+  },
+  {
+   "theme": "石墨化",
+   "sub": "石墨电极",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 32
+  },
+  {
+   "theme": "石墨化",
+   "sub": "石墨负极",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 32
+  },
+  {
+   "theme": "石油石化",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 41
+  },
+  {
+   "theme": "石英材料",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 67
+  },
+  {
+   "theme": "破净股概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 195
+  },
+  {
+   "theme": "硫化物",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 168
+  },
+  {
+   "theme": "碳中和",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 132
+  },
+  {
+   "theme": "碳中和",
+   "sub": "碳汇林",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 133
+  },
+  {
+   "theme": "碳钎维",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 57
+  },
+  {
+   "theme": "社保卡",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 134
+  },
+  {
+   "theme": "福建",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 174
+  },
+  {
+   "theme": "科创板",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 44
+  },
+  {
+   "theme": "租售同权",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 177
+  },
+  {
+   "theme": "稀土永磁",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 77
+  },
+  {
+   "theme": "端侧AI",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 9
+  },
+  {
+   "theme": "端侧AI",
+   "sub": "AI PC",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 10
+  },
+  {
+   "theme": "端侧AI",
+   "sub": "AI手机",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 10
+  },
+  {
+   "theme": "端侧AI",
+   "sub": "AI玩具",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 10
+  },
+  {
+   "theme": "端侧AI",
+   "sub": "AI眼镜",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 10
+  },
+  {
+   "theme": "端侧AI",
+   "sub": "智能穿戴",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 10
+  },
+  {
+   "theme": "端侧AI",
+   "sub": "智能音箱",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 10
+  },
+  {
+   "theme": "端侧AI",
+   "sub": "端侧芯片",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 10
+  },
+  {
+   "theme": "算力",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 40
+  },
+  {
+   "theme": "算力",
+   "sub": "GPU",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 41
+  },
+  {
+   "theme": "算力",
+   "sub": "NAS",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 41
+  },
+  {
+   "theme": "算力",
+   "sub": "东数西算",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 41
+  },
+  {
+   "theme": "算力",
+   "sub": "云计算",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 41
+  },
+  {
+   "theme": "算力",
+   "sub": "国资云",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 41
+  },
+  {
+   "theme": "算力",
+   "sub": "数据中心",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 41
+  },
+  {
+   "theme": "算力",
+   "sub": "服务器",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 41
+  },
+  {
+   "theme": "算力",
+   "sub": "液冷",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 41
+  },
+  {
+   "theme": "算力",
+   "sub": "算力租赁",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 41
+  },
+  {
+   "theme": "算力",
+   "sub": "算力调度",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 41
+  },
+  {
+   "theme": "算力",
+   "sub": "英伟达概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 41
+  },
+  {
+   "theme": "算力",
+   "sub": "训推一体机",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 41
+  },
+  {
+   "theme": "粤港澳",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 28
+  },
+  {
+   "theme": "网红经济",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 228
+  },
+  {
+   "theme": "网红经济",
+   "sub": "网络直播",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 229
+  },
+  {
+   "theme": "美容护理",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 176
+  },
+  {
+   "theme": "股权转让",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 17
+  },
+  {
+   "theme": "脑机接口",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 18
+  },
+  {
+   "theme": "腾讯概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 110
+  },
+  {
+   "theme": "自主可控",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 74
+  },
+  {
+   "theme": "自行车",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 218
+  },
+  {
+   "theme": "航运",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 221
+  },
+  {
+   "theme": "芯片",
+   "sub": "功率半导体",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30 第二批",
+   "sort_order": 0
+  },
+  {
+   "theme": "芯片",
+   "sub": "安世谈判",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "芯片",
+   "sub": "数字电源",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "芯片",
+   "sub": "间接投资长鑫科技",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "芯片",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 2
+  },
+  {
+   "theme": "芯片",
+   "sub": "CPU",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "EDA",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "HBM",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "IGBT",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "MCU",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "RISC-V",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "先进封装",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "光刻机",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "光刻胶",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "光芯片",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "半导体硅片",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "半导体设备",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "大基金二期",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "大基金持股",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "存储",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "扇出型封装",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "抛光液",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "数字芯片",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "模拟芯片",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "氮化镓",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "汽车芯片",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "洁净室",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "滤波器",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "玻璃基板",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "电子气体",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "砷化镓",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "碳化硅",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "磷化铟",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "第三代半导体",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "芯片前端制造",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "芯片封测",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "芯片设计",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "芯片",
+   "sub": "靶材",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 3
+  },
+  {
+   "theme": "虚拟人",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 121
+  },
+  {
+   "theme": "西藏自治区",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 196
+  },
+  {
+   "theme": "西部大开发",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 136
+  },
+  {
+   "theme": "证券",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 239
+  },
+  {
+   "theme": "财税数字化",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 185
+  },
+  {
+   "theme": "超导概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 64
+  },
+  {
+   "theme": "超跌",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 133
+  },
+  {
+   "theme": "跨境支付",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 180
+  },
+  {
+   "theme": "轨道交通",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 20
+  },
+  {
+   "theme": "轨道交通",
+   "sub": "高铁",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 21
+  },
+  {
+   "theme": "远东开发",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 191
+  },
+  {
+   "theme": "送转填权",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 49
+  },
+  {
+   "theme": "通信",
+   "sub": "HDI板",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "通信",
+   "sub": "高速铜缆",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30 第二批",
+   "sort_order": 0
+  },
+  {
+   "theme": "通信",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 4
+  },
+  {
+   "theme": "通信",
+   "sub": "5G",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "6G",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "CPC",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "CPO/MPO",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "OCS交换机",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "PCB",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "PCB设备",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "PCB铜箔",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "RDMA",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "交换机",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "光模块",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "光纤概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "电子布",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "电子树脂",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "电磁屏蔽",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "覆铜板",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通信",
+   "sub": "高速连接",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 5
+  },
+  {
+   "theme": "通用航空",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 89
+  },
+  {
+   "theme": "造纸",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 154
+  },
+  {
+   "theme": "造船",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 211
+  },
+  {
+   "theme": "酿酒",
+   "sub": "徽酒代表",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "酿酒",
+   "sub": "老窖池",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "酿酒",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 220
+  },
+  {
+   "theme": "酿酒",
+   "sub": "啤酒",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 221
+  },
+  {
+   "theme": "酿酒",
+   "sub": "白酒",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 221
+  },
+  {
+   "theme": "酿酒",
+   "sub": "葡萄酒",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 221
+  },
+  {
+   "theme": "酿酒",
+   "sub": "黄酒",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 221
+  },
+  {
+   "theme": "醋酸",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 217
+  },
+  {
+   "theme": "重庆市",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 150
+  },
+  {
+   "theme": "金刚石概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 39
+  },
+  {
+   "theme": "金融概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 234
+  },
+  {
+   "theme": "金融概念",
+   "sub": "互联网金融",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 235
+  },
+  {
+   "theme": "金融概念",
+   "sub": "信托概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 235
+  },
+  {
+   "theme": "金融概念",
+   "sub": "参股券商",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 235
+  },
+  {
+   "theme": "金融概念",
+   "sub": "参股基金",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 235
+  },
+  {
+   "theme": "金融概念",
+   "sub": "期货概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 235
+  },
+  {
+   "theme": "金融概念",
+   "sub": "蚂蚁概念",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 235
+  },
+  {
+   "theme": "金融概念",
+   "sub": "资产管理",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 235
+  },
+  {
+   "theme": "金融概念",
+   "sub": "金融科技",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 235
+  },
+  {
+   "theme": "金融概念",
+   "sub": "香港牌照",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 235
+  },
+  {
+   "theme": "钒电池",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 187
+  },
+  {
+   "theme": "钠电池",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 111
+  },
+  {
+   "theme": "钠电池",
+   "sub": "参股钠电池",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 112
+  },
+  {
+   "theme": "钠电池",
+   "sub": "钠电池材料",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 112
+  },
+  {
+   "theme": "钠电池",
+   "sub": "钠电池研发",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 112
+  },
+  {
+   "theme": "钢铁",
+   "sub": "有机涂层板",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "钢铁",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 173
+  },
+  {
+   "theme": "钢铁",
+   "sub": "铁矿石",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 174
+  },
+  {
+   "theme": "铀矿",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 149
+  },
+  {
+   "theme": "铅酸电池",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 181
+  },
+  {
+   "theme": "银行",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 212
+  },
+  {
+   "theme": "锂电池",
+   "sub": "电池结构件",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "锂电池",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 222
+  },
+  {
+   "theme": "锂电池",
+   "sub": "PVDF",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "凝聚态电池",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "刀片电池",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "动力电池",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "固态电池",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "复合集流体",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "大圆柱电池",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "氢氧化锂",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "氯化亚砜",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "电池回收",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "电解液",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "盐湖提锂",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "碳酸锂",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "磷酸铁锂",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "负极",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "铝塑膜",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "铝箔",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "锂电设备",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "锂电铜箔",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "锂矿",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "隔膜",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "高镍三元",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "锂电池",
+   "sub": "麒麟电池",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 223
+  },
+  {
+   "theme": "阿里巴巴概念",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 35
+  },
+  {
+   "theme": "陕西省",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 95
+  },
+  {
+   "theme": "雄安新区",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 141
+  },
+  {
+   "theme": "集装箱",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 198
+  },
+  {
+   "theme": "零售",
+   "sub": "农批市场",
+   "source": "manual",
+   "enabled": 0,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "零售",
+   "sub": "鸣鸣很忙",
+   "source": "manual",
+   "enabled": 0,
+   "note": "LLM归类 10-30 第二批",
+   "sort_order": 0
+  },
+  {
+   "theme": "零售",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 0,
+   "note": "",
+   "sort_order": 225
+  },
+  {
+   "theme": "露营经济",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 126
+  },
+  {
+   "theme": "非金属材料",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 238
+  },
+  {
+   "theme": "非金属材料",
+   "sub": "氧化锆",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 239
+  },
+  {
+   "theme": "非金属材料",
+   "sub": "氮化铝",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 239
+  },
+  {
+   "theme": "面板",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 55
+  },
+  {
+   "theme": "面板",
+   "sub": "Mini/Micro LED",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 56
+  },
+  {
+   "theme": "面板",
+   "sub": "OLED",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 56
+  },
+  {
+   "theme": "风电",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 94
+  },
+  {
+   "theme": "风电",
+   "sub": "风电整机厂商",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 95
+  },
+  {
+   "theme": "风电",
+   "sub": "风电材料",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 95
+  },
+  {
+   "theme": "风电",
+   "sub": "风电运营商",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 95
+  },
+  {
+   "theme": "风电",
+   "sub": "风电零部件",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 95
+  },
+  {
+   "theme": "食品安全",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 119
+  },
+  {
+   "theme": "食品饮料",
+   "sub": "中式面点",
+   "source": "manual",
+   "enabled": 0,
+   "note": "",
+   "sort_order": 0
+  },
+  {
+   "theme": "食品饮料",
+   "sub": "低温鲜奶",
+   "source": "manual",
+   "enabled": 0,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "食品饮料",
+   "sub": "小笼包",
+   "source": "manual",
+   "enabled": 0,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "食品饮料",
+   "sub": "矿泉水",
+   "source": "manual",
+   "enabled": 0,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "食品饮料",
+   "sub": "红枣龙头",
+   "source": "manual",
+   "enabled": 0,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "食品饮料",
+   "sub": "药食同源",
+   "source": "manual",
+   "enabled": 0,
+   "note": "LLM归类 10-30 第二批",
+   "sort_order": 0
+  },
+  {
+   "theme": "食品饮料",
+   "sub": "黑色食养",
+   "source": "manual",
+   "enabled": 0,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "食品饮料",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 0,
+   "note": "",
+   "sort_order": 216
+  },
+  {
+   "theme": "食品饮料",
+   "sub": "乳业",
+   "source": "kpl",
+   "enabled": 0,
+   "note": "",
+   "sort_order": 217
+  },
+  {
+   "theme": "食品饮料",
+   "sub": "人造肉",
+   "source": "kpl",
+   "enabled": 0,
+   "note": "",
+   "sort_order": 217
+  },
+  {
+   "theme": "食品饮料",
+   "sub": "代糖概念",
+   "source": "kpl",
+   "enabled": 0,
+   "note": "",
+   "sort_order": 217
+  },
+  {
+   "theme": "食品饮料",
+   "sub": "预制菜",
+   "source": "kpl",
+   "enabled": 0,
+   "note": "",
+   "sort_order": 217
+  },
+  {
+   "theme": "高股息精选",
+   "sub": "高股息",
+   "source": "manual",
+   "enabled": 1,
+   "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "高股息精选",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 182
+  },
+  {
+   "theme": "黄金",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 172
+  },
+  {
+   "theme": "黄金",
+   "sub": "黄金冶炼加工",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 173
+  },
+  {
+   "theme": "黄金",
+   "sub": "黄金回收",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 173
+  },
+  {
+   "theme": "黄金",
+   "sub": "黄金开采",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 173
+  },
+  {
+   "theme": "黄金",
+   "sub": "黄金零售",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 173
+  },
+  {
+   "theme": "黑龙江自贸区",
+   "sub": "",
+   "source": "kpl",
+   "enabled": 1,
+   "note": "",
+   "sort_order": 194
+  }
+ ]
+}

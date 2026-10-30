@@ -1,0 +1,12 @@
+# ThemeHunter MVP1 依赖
+pyyaml>=6.0
+pandas>=2.0
+akshare>=1.16        # 东财涨停池/概念板块（备份主用源）
+fastapi>=0.115       # 网页操作台后端
+uvicorn>=0.30
+pyperclip>=1.9       # 剪贴板导出（同花顺导入主链路）
+
+# ---- 可选 ----
+# pywencai          # 问财数据源（需要 Node.js，分发给朋友时不启用）
+# hdbscan           # MVP3 聚类
+# sentence-transformers  # MVP3 BGE Embedding

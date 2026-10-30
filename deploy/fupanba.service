@@ -1,0 +1,24 @@
+[Unit]
+Description=复盘吧 ThemeHunter
+Documentation=https://localhost:8765
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# 由 setup.sh 把 /opt/fupanba 换成实际安装目录
+WorkingDirectory=/opt/fupanba
+EnvironmentFile=-/opt/fupanba/.service.env
+Environment=PYTHONUNBUFFERED=1
+Environment=LANG=C.UTF-8
+# 绑定 0.0.0.0 才能被外网访问；没有设 TH_AUTH 时等于裸奔，setup.sh 会强制生成密码
+ExecStart=/opt/fupanba/.venv/bin/python -m uvicorn src.server.app:create_app --factory --host 0.0.0.0 --port 8765 --log-level warning
+Restart=always
+RestartSec=5
+TimeoutStopSec=15
+# 只保留最近 200MB 日志，避免磁盘被写满
+StandardOutput=append:/opt/fupanba/data/logs/service.log
+StandardError=append:/opt/fupanba/data/logs/service.log
+
+[Install]
+WantedBy=multi-user.target
