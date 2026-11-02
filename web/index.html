@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="app-version" content="24">
+<meta name="app-version" content="27">
 <meta name="theme-color" content="#0f0f14" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
 <meta name="mobile-web-app-capable" content="yes">
@@ -26,7 +26,7 @@ window.addEventListener("unhandledrejection", (e) => {
 </script>
 
 <title>复盘吧 · ThemeHunter</title>
-<link rel="stylesheet" href="/static/style.css?v=36">
+<link rel="stylesheet" href="/static/style.css?v=38">
 <script src="/static/anime.min.js"></script>
 </head>
 <body>
@@ -55,6 +55,7 @@ window.addEventListener("unhandledrejection", (e) => {
       </div>
       <button id="btnFetch" title="拉取当日涨停池+炸板池+10cm异动+连板更新">采集数据</button>
       <button id="btnBackfill" title="回填近30个交易日的涨停/题材数据">历史回填</button>
+      <button id="btnVolBackfill" title="回补全市场逐日成交量（爆量题材首次必跑，约需 6-10 分钟）">爆量回补</button>
       <button id="btnFramework" title="查看/编辑题材框架（开盘啦层级表），可查询任意词归到哪个板块">题材框架</button>
       <button id="btnUpdate" class="update-btn" hidden>更新</button>
       <button id="btnTheme" class="theme-btn" title="切换浅色/深色模式">☾</button>
@@ -65,6 +66,16 @@ window.addEventListener("unhandledrejection", (e) => {
 
 <main>
   <section class="left">
+    <div class="seg left-scope" id="viewScope">
+      <button class="seg-btn on" data-view="zt" title="涨停股按题材归类的板块排行">涨停题材</button>
+      <button class="seg-btn" data-view="burst" title="当日成交量达到前5日最低量 2/3 倍的股票，按题材归类">爆量题材</button>
+    </div>
+    <div class="seg seg-mult" id="burstMult" hidden>
+      <button class="seg-btn on" data-mult="2">≥2倍</button>
+      <button class="seg-btn" data-mult="3">≥3倍</button>
+    </div>
+    <div class="bd-hint" id="burstHint" hidden></div>
+
     <div class="breadth" id="breadth">
       <div class="bd-card" id="bdUpCard">
         <span class="bd-label">涨幅 ≥9.90%</span>
@@ -84,7 +95,7 @@ window.addEventListener("unhandledrejection", (e) => {
       </div>
     </div>
     <div class="bd-hint" id="bdHint"></div>
-    <h2>题材强度 <span id="themeCount"></span></h2>
+    <h2><b id="themeHeadLabel">题材强度</b> <span id="themeCount"></span></h2>
     <div class="theme-scroll">
       <div id="themeList"></div>
     </div>
@@ -112,11 +123,36 @@ window.addEventListener("unhandledrejection", (e) => {
         <button id="btnCandidates" title="查看当日池内、属于该主线外围概念但未纳入的个股">补全候选</button>
       </div>
     </div>
+    <div class="note-bar" id="noteBar">
+      <div class="note-head">
+        <div class="seg note-seg" id="noteTabs">
+          <button class="seg-btn on" data-scope="day" title="当天的整体复盘">本日</button>
+          <button class="seg-btn" data-scope="theme" title="当前选中题材的笔记">题材</button>
+          <button class="seg-btn" data-scope="stock" title="点开个股后可写" hidden>个股</button>
+        </div>
+        <span class="note-meta" id="noteMeta"></span>
+        <button class="note-toggle" id="noteToggle" title="展开/收起笔记">▾</button>
+      </div>
+      <div class="note-body" id="noteBody" hidden>
+        <textarea id="noteInput" rows="3" spellcheck="false"
+                  placeholder="今天怎么想的…（失焦自动保存，清空即删除）"></textarea>
+        <div class="note-history" id="noteHistory" hidden></div>
+      </div>
+    </div>
     <table id="leaderTable">
       <thead>
         <tr>
           <th>排序</th><th>股票</th><th>连板</th><th>涨幅</th>
           <th>封单占比</th><th>涨停时间</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <table id="burstTable" hidden>
+      <thead>
+        <tr>
+          <th>股票</th><th>涨幅</th><th>今日量</th>
+          <th>基准量</th><th>倍数</th><th>基准日</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -233,6 +269,6 @@ window.addEventListener("unhandledrejection", (e) => {
   </div>
 </div>
 
-<script src="/static/app.js?v=36"></script>
+<script src="/static/app.js?v=39"></script>
 </body>
 </html>

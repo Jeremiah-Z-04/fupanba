@@ -2,7 +2,12 @@
    数据来自 ./data/ 下预生成的 JSON，不依赖任何后端。
    对应桌面版的 app.js，但去掉了采集、人工修正、题材框架这些需要写库的功能。 */
 const $ = (id) => document.getElementById(id);
-const state = { dates: [], date: "", day: null, activeTheme: null };
+const state = {
+  dates: [], date: "", day: null, activeTheme: null,
+  view: "zt",          // zt=涨停题材 / burst=爆量题材
+  burstMult: 2,        // 2 或 3，纯前端切换
+  burstTheme: null,
+};
 
 /* 与 config/default.yaml 的 export.ths 保持一致 */
 const IMG = { font: 40, line: 56, pad: 36, dpr: 2, chunk: 12 };
@@ -36,6 +41,7 @@ async function boot() {
     $("btnPrev").onclick = () => step(1);   // 更早
     $("btnNext").onclick = () => step(-1);  // 更新
     bindThs();
+    bindBurst();
     await loadDay(idx.latest);
     setStatus(`数据更新于 ${idx.generated_at}`);
   } catch (e) {
@@ -62,12 +68,16 @@ async function loadDay(ds) {
     const day = await getJSON(`./data/${ds}.json`);
     state.date = ds;
     state.day = day;
-    state.activeTheme = (day.themes && day.themes[0]) ? day.themes[0].theme_name : null;
     $("dateSel").value = ds;
     renderBreadth(day.breadth || {});
-    renderThemes(day.themes || []);
-    renderUnassigned(day.unassigned);
-    renderLeaders(state.activeTheme);
+    if (state.view === "burst") {
+      renderBurst();
+    } else {
+      state.activeTheme = (day.themes && day.themes[0]) ? day.themes[0].theme_name : null;
+      renderThemes(day.themes || []);
+      renderUnassigned(day.unassigned);
+      renderLeaders(state.activeTheme);
+    }
     updateNav();
     setStatus(day.trading_day === false ? `${ds}（非交易日）` : "");
   } catch (e) {
@@ -230,6 +240,207 @@ function renderUnassigned(u) {
       <span class="unassigned-status">${esc(s.status)}</span>
       <span class="unassigned-reason">${esc(s.reason || (s.concepts || []).join("·"))}</span>
     </div>`).join("");
+}
+
+/* ---------------- 爆量题材（只读版：数据已在 JSON 里预聚合） ---------------- */
+function fmtVol(v) {
+  const n = Number(v) || 0;
+  if (!n) return "-";
+  if (n >= 1e8) return (n / 1e8).toFixed(2) + "亿";
+  if (n >= 1e4) return (n / 1e4).toFixed(1) + "万";
+  return String(Math.round(n));
+}
+
+function burstData() {
+  const b = state.day && state.day.burst;
+  return b && b.ready ? b : null;
+}
+
+function burstSorted() {
+  const b = burstData();
+  const m = state.burstMult;
+  return ((b && b.themes) || [])
+    .filter((t) => (t["count_" + m] || 0) > 0)
+    .sort((x, y) => ((y["count_" + m] || 0) - (x["count_" + m] || 0)) ||
+                    ((y["max_" + m] || 0) - (x["max_" + m] || 0)));
+}
+
+function burstRows(theme) {
+  const b = burstData();
+  const m = state.burstMult;
+  return ((b && b.stocks) || [])
+    .filter((s) => s.theme === theme && s.ratio >= m)
+    .sort((x, y) => y.ratio - x.ratio);
+}
+
+function renderBurst() {
+  const list = $("themeList");
+  list.innerHTML = "";
+  const b = burstData();
+  const thread = $("burstHint");
+  if (!b) {
+    $("themeCount").textContent = "";
+    list.innerHTML = `<div class="ldr-empty">该日没有爆量数据（需在本地回补成交量后重新导出）</div>`;
+    $("burstTable").querySelector("tbody").innerHTML = "";
+    $("leaderTitle").innerHTML = `爆量明细 <span class="hint">无数据</span>`;
+    if (thread) thread.textContent = "";
+    return;
+  }
+  const bw = (b.base_window || []).map((x) => x.slice(5)).join(" / ");
+  if (thread) thread.textContent = (bw ? `${b.base_desc}（${bw}）` : (b.base_desc || ""));
+  const m = state.burstMult;
+  const th = burstSorted();
+  const tot = b.totals || {};
+  $("themeCount").textContent = `${th.length} 个板块 · ≥${m}倍 · 去重 ${tot["surge_" + m] || 0} 只` +
+    (tot["unmapped_" + m] ? ` · 未归类 ${tot["unmapped_" + m]}` : "");
+  th.forEach((t) => list.appendChild(makeBurstBlock(t)));
+  if (th.length) selectBurst(th[0].theme_name);
+  else {
+    $("burstTable").querySelector("tbody").innerHTML = "";
+    $("leaderTitle").innerHTML = `爆量明细 <span class="hint">该倍数下没有板块</span>`;
+  }
+}
+
+function makeBurstBlock(t) {
+  const m = state.burstMult;
+  const n = t["count_" + m] || 0;
+  const mx = t["max_" + m] || 0;
+  const zt = t.zt_2 || 0;
+  const wrap = document.createElement("div");
+  wrap.className = "theme-block" + (t.theme_name === state.burstTheme ? " active" : "");
+  wrap.dataset.theme = t.theme_name;
+
+  const item = document.createElement("div");
+  item.className = "theme-item";
+  item.title = `${t.theme_name}：≥${m}倍爆量 ${n} 只` +
+    (zt ? `（其中涨停 ${zt} 只）` : "") + `，板块内最高 ${mx.toFixed(2)} 倍`;
+  item.innerHTML = `<span class="t-name">${esc(t.theme_name)}
+    <span class="t-count">${n} 只${zt ? `<i class="t-split">涨停${zt}</i>` : ""}\
+<i class="t-ratio">${mx.toFixed(1)}×</i></span></span>`;
+  item.onclick = () => onBurstClick(wrap);
+
+  const detail = document.createElement("div");
+  detail.className = "theme-detail";
+  wrap.append(item, detail);
+  return wrap;
+}
+
+function onBurstClick(wrap) {
+  const wasOpen = wrap.classList.contains("open");
+  $("themeList").querySelectorAll(".theme-block.open")
+    .forEach((b) => b.classList.remove("open"));
+  $("themeList").querySelectorAll(".theme-block.active")
+    .forEach((b) => b.classList.remove("active"));
+  if (wasOpen) {
+    state.burstTheme = null;
+    $("burstTable").querySelector("tbody").innerHTML = "";
+    $("leaderTitle").innerHTML = `爆量明细 <span class="hint">先选板块</span>`;
+    return;
+  }
+  wrap.classList.add("open", "active");
+  state.burstTheme = wrap.dataset.theme;
+  renderBurstDetail(wrap);
+  renderBurstTable(wrap.dataset.theme);
+  if (isNarrow()) {
+    const first = wrap.querySelector(".theme-detail").firstElementChild;
+    if (first) {
+      const fr = first.getBoundingClientRect();
+      if (fr.bottom > window.innerHeight - 8) {
+        window.scrollBy({ top: fr.top - window.innerHeight * 0.52, behavior: "smooth" });
+      }
+    }
+  }
+}
+
+function renderBurstDetail(wrap) {
+  const detail = wrap.querySelector(".theme-detail");
+  const rows = burstRows(wrap.dataset.theme);
+  detail.innerHTML = rows.length ? rows.map((s) => `<div class="ldr-row">
+    <span class="ldr-rank"><span class="burst-ratio">${s.ratio.toFixed(1)}×</span></span>
+    <span class="ldr-main"><span class="stock-code">${esc(s.code)}</span>
+      <span class="stock-name">${esc(s.name)}</span></span>
+    <span class="ldr-lb">${fmtVol(s.volume)}</span>
+    <span class="ldr-pct">${Number(s.high_pct).toFixed(1)}%</span>
+    <span class="ldr-sub">基准 ${fmtVol(s.base_volume)}（${esc((s.base_date || "").slice(5))}）</span>
+  </div>`).join("") : `<div class="ldr-empty">该倍数下没有个股</div>`;
+}
+
+function selectBurst(theme) {
+  state.burstTheme = theme;
+  $("themeList").querySelectorAll(".theme-block.active")
+    .forEach((b) => b.classList.remove("active"));
+  const cur = [...$("themeList").querySelectorAll(".theme-block")]
+    .find((b) => b.dataset.theme === theme);
+  if (cur) cur.classList.add("active");
+  renderBurstTable(theme);
+}
+
+function renderBurstTable(theme) {
+  const rows = burstRows(theme);
+  const m = state.burstMult;
+  const info = (burstSorted() || []).find((t) => t.theme_name === theme) ||
+    (((burstData() || {}).themes || []).find((t) => t.theme_name === theme));
+  const mx = info ? (info["max_" + m] || 0) : 0;
+  $("leaderTitle").innerHTML = `爆量明细 · ${esc(theme || "—")} ` +
+    `<span class="hint">${rows.length} 只 · 最高 ${mx.toFixed(2)} 倍</span>`;
+  const tbody = $("burstTable").querySelector("tbody");
+  tbody.innerHTML = rows.map((s) => {
+    const srcTag = s.src === "reason" ? "原因"
+      : s.src === "zt_today" ? "涨停" : (s.src === "concept" ? "概念" : "—");
+    return `<tr title="${esc(s.reason ? `涨停原因（${s.reason_date}）：${s.reason}` : "无涨停原因，按概念归类")}">
+      <td><span class="stock-code">${esc(s.code)}</span><span class="stock-name">${esc(s.name)}</span>
+          <span class="burst-src">${srcTag}</span></td>
+      <td class="pct">${Number(s.high_pct).toFixed(2)}%</td>
+      <td class="burst-vol">${fmtVol(s.volume)}</td>
+      <td class="burst-vol">${fmtVol(s.base_volume)}</td>
+      <td class="burst-ratio">${s.ratio.toFixed(2)}×</td>
+      <td class="burst-date">${esc((s.base_date || "").slice(5))}</td>
+    </tr>`;
+  }).join("");
+}
+
+function setView(v) {
+  if (state.view === v) return;
+  state.view = v;
+  document.body.classList.toggle("burst", v === "burst");
+  document.querySelectorAll("#viewScope .seg-btn")
+    .forEach((b) => b.classList.toggle("on", b.dataset.view === v));
+  $("themeHeadLabel").textContent = v === "burst" ? "爆量板块" : "题材强度";
+  $("burstMult").hidden = v !== "burst";
+  $("burstHint").hidden = v !== "burst";
+  $("leaderTable").hidden = v === "burst";
+  $("burstTable").hidden = v !== "burst";
+  // 两张表共用 right 容器，不归零会继承上一张表的滚动位置
+  const right = document.querySelector("main .right");
+  if (right) right.scrollTop = 0;
+  if (v === "burst") {
+    state.activeTheme = null;
+    $("leaderTitle").innerHTML = `爆量明细 <span class="hint">← 点击左侧板块查看</span>`;
+    renderBurst();
+  } else {
+    state.burstTheme = null;
+    const themes = (state.day && state.day.themes) || [];
+    state.activeTheme = themes.length ? themes[0].theme_name : null;
+    renderThemes(themes);
+    renderUnassigned(state.day && state.day.unassigned);
+    renderLeaders(state.activeTheme);
+  }
+}
+
+function bindBurst() {
+  $("viewScope").onclick = (e) => {
+    const b = e.target.closest(".seg-btn");
+    if (b && b.dataset.view !== state.view) setView(b.dataset.view);
+  };
+  $("burstMult").onclick = (e) => {
+    const b = e.target.closest(".seg-btn");
+    const m = b ? Number(b.dataset.mult) : 0;
+    if (!m || m === state.burstMult) return;
+    state.burstMult = m;
+    [...$("burstMult").querySelectorAll(".seg-btn")]
+      .forEach((x) => x.classList.toggle("on", Number(x.dataset.mult) === m));
+    if (state.view === "burst") renderBurst();
+  };
 }
 
 /* ---------------- 导入同花顺 ---------------- */

@@ -92,6 +92,24 @@ def build_day(db: DB, cal, cfg: Config, ds: str) -> dict:
     except Exception:
         pass
 
+    # 爆量题材：复用与 /api/volume/surge 完全相同的聚合函数，防止两处口径漂移
+    burst = None
+    try:
+        from src.core import volume_surge as vs
+        p = vs.build_payload(db, ds, cfg)
+        if p.get("ready"):
+            p["base_window"] = vs.prev_trading_days(
+                cal, d, vs.vcfg(cfg)["base_window"])
+            # 静态站是只读展示，裁掉前端用不到的字段（suspect 永远 false、
+            # sub 没显示、is_zt 和 src 重复），单日体积能小两成
+            keep = ("theme", "code", "name", "ratio", "volume",
+                    "base_volume", "base_date", "high_pct", "src",
+                    "reason", "reason_date")
+            p["stocks"] = [{k: s.get(k) for k in keep} for s in p["stocks"]]
+            burst = p
+    except Exception:
+        burst = None
+
     return {
         "date": ds,
         "trading_day": cal.is_trading_day(d),
@@ -100,6 +118,7 @@ def build_day(db: DB, cal, cfg: Config, ds: str) -> dict:
         "leaders": leaders,
         "unassigned": {"count": len(unassigned), "stocks": unassigned},
         "exports": exports,
+        "burst": burst,
     }
 
 

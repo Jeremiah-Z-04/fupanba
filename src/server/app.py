@@ -27,6 +27,7 @@ from src.export.clipboard import (ClipboardUnavailable, build_code_list,
 from src.log import get_logger
 from src.paths import BUNDLE_DIR, is_frozen
 from src.pipeline import Pipeline
+from src.storage.note_repo import NoteRepo
 from src.storage.override_repo import OverrideRepo
 
 log = get_logger(__name__)
@@ -41,6 +42,16 @@ class DateReq(BaseModel):
 
 class BackfillReq(BaseModel):
     days: int = 30
+
+class VolBackfillReq(BaseModel):
+    days: int = 20
+    force: bool = False
+
+class NoteReq(BaseModel):
+    date: str | None = None
+    scope: str = "day"        # day | theme | stock
+    key: str = ""
+    content: str = ""
 
 class RerankReq(BaseModel):
     date: str
@@ -149,6 +160,7 @@ def create_app() -> FastAPI:
     cfg = Config.load()
     pipe = Pipeline(cfg)
     ovr = OverrideRepo(pipe.db)
+    notes = NoteRepo(pipe.db)
     cal = get_calendar(cfg.data_dir)
     app = FastAPI(title="ThemeHunter", version="0.1.0")
 
@@ -374,6 +386,28 @@ def create_app() -> FastAPI:
         return {"count": len(items), "items": items}
 
     @app.post("/api/framework/sync")
+    def _fw_reanalyze() -> dict:
+        """框架变了之后，把当天结果按新框架重算一次。
+
+        不重算的话，朋友同步到新框架、看到的还是旧归类，要再手点一次复盘才变。
+        有人工修正就跳过——重算会覆盖 is_override 的排名，人手工调过的不该被冲掉。
+        """
+        d = cal.resolve(date.today())["trade_date"]
+        iso = d.isoformat()
+        n = pipe.db.query(
+            "SELECT COUNT(*) AS c FROM leader_result "
+            "WHERE trade_date=? AND is_override=1", (iso,))[0]["c"]
+        if n:
+            return {"skipped": True,
+                    "reason": f"{iso} 有 {n} 条人工修正，未自动重算"}
+        try:
+            r = pipe.analyze_day(d)
+            return {"ok": True, "date": iso,
+                    "themes": r.get("themes_count", 0)}
+        except Exception as e:
+            log.exception("框架同步后重算当天失败")
+            return {"ok": False, "reason": str(e)}
+
     def api_fw_sync():
         """从发布方拉取最新题材框架并整表覆盖。
 
@@ -385,6 +419,10 @@ def create_app() -> FastAPI:
         if not res.get("ok"):
             raise HTTPException(502, res.get("reason") or "同步失败")
         _fw_cache["clusterer"] = None      # 让归类预览立刻用上新框架
+        if res.get("skipped"):
+            res["reanalyze"] = {"skipped": True, "reason": "框架没变化，不用重算"}
+        else:
+            res["reanalyze"] = _fw_reanalyze()
         return res
 
     @app.post("/api/framework/themes")
@@ -532,6 +570,63 @@ def create_app() -> FastAPI:
             (d.isoformat(),),
         )
         return [dict(r) for r in rows]
+
+    # ---------------- 爆量题材（成交量 >= 前N日最低量 × 2/3） ----------------
+    @app.get("/api/volume/surge")
+    def api_volume_surge(date: str | None = None):
+        """当日爆量题材：板块排行 + 成员明细（含 2/3 两套预聚合）。
+
+        倍数切换在前端做（零请求），左栏家数与右栏明细必然同源一致。
+        没有数据时先自愈跑一次本地扫描，仍不行就把「缺哪几天」直接告诉用户。
+        """
+        d = _d(date)
+        ds = d.isoformat()
+        from src.core import volume_surge as vs
+
+        repo = vs.VolumeRepo(pipe.db)
+        if not repo.has_surge(ds):
+            vs.scan_day(cfg, pipe.db, cal, d)
+        out = vs.build_payload(pipe.db, ds, cfg)
+        out["base_window"] = vs.prev_trading_days(cal, d, vs.vcfg(cfg)["base_window"])
+        if not out.get("ready"):
+            rep = vs.coverage_report(pipe.db, cal, d, cfg)
+            out["lack"] = rep.get("lack") or []
+            if rep.get("lack"):
+                out["hint"] = ("缺少 %s 的全市场成交量，请到「更多 → 爆量回补」补一次"
+                               % "、".join(rep["lack"]))
+        return out
+
+    @app.post("/api/volume/scan")
+    def api_volume_scan(req: DateReq):
+        """用库内成交量本地重算（改题材框架后必须跑一次，否则归属还是旧框架）。"""
+        d = _d(req.date)
+        from src.core import volume_surge as vs
+
+        r = vs.scan_day(cfg, pipe.db, cal, d, force=True)
+        out = vs.build_payload(pipe.db, d.isoformat(), cfg)
+        out["base_window"] = vs.prev_trading_days(cal, d, vs.vcfg(cfg)["base_window"])
+        out["ok"] = bool(r.get("ok"))
+        if not r.get("ok"):
+            out["hint"] = r.get("reason", "")
+        return out
+
+    @app.post("/api/volume/backfill")
+    def api_volume_backfill(req: VolBackfillReq):
+        """首次回补丢后台线程，立刻返回；进度走 GET /api/volume/job 轮询。"""
+        from src.core import volume_surge as vs
+
+        if vs.JOB.running():
+            return {"ok": True, "already": True, "job": vs.JOB.snapshot()}
+        days = max(1, min(int(req.days or 20), 60))
+        started = vs.JOB.start(lambda: vs.backfill_history(
+            pipe.db, cal, cfg, days=days, force=req.force,
+            on_progress=vs.JOB.update))
+        return {"ok": True, "already": not started, "job": vs.JOB.snapshot()}
+
+    @app.get("/api/volume/job")
+    def api_volume_job():
+        from src.core import volume_surge as vs
+        return vs.JOB.snapshot()
 
     @app.get("/api/isolated")
     def api_isolated(date: str | None = None):
@@ -857,7 +952,34 @@ def create_app() -> FastAPI:
             "turnover": r["turnover"] or 0.0,
             "zt_time": r["zt_time"] or "",
             "float_mv": fmv,
+            "note": notes.get("stock", ds, r["code"]),
         }
+
+    # ---------------- 复盘笔记（日 / 题材 / 个股三级） ----------------
+    @app.get("/api/notes")
+    def api_notes(date: str | None = None, scope: str | None = None,
+                  key: str | None = None):
+        """当日三层笔记一次拿齐，切日期只多一个请求。
+
+        带 scope+key 时（切页签）额外返回该题材/个股的历史脉络，避免每天重复写。
+        """
+        d = _d(date)
+        ds = d.isoformat()
+        out = notes.bundle(ds)
+        out["date"] = ds
+        out["count"] = notes.count(ds)
+        out["history"] = (notes.ref_history(scope, key, ds)
+                          if scope in ("theme", "stock") and key else [])
+        return out
+
+    @app.post("/api/note")
+    def api_note_save(req: NoteReq):
+        d = _d(req.date)
+        try:
+            r = notes.save(req.scope, d.isoformat(), req.key, req.content)
+        except ValueError as e:
+            raise HTTPException(400, str(e))
+        return {"ok": True, "date": d.isoformat(), **r}
 
     # ---------------- 龙头人工调节（override 层） ----------------
     @app.post("/api/override/rerank")
@@ -1086,7 +1208,8 @@ def create_app() -> FastAPI:
                 res = framework_sync.sync(pipe.db, cfg)
                 if res.get("ok") and not res.get("skipped"):
                     _fw_cache["clusterer"] = None
-                    log.info("启动时已同步框架：%s", res)
+                    ra = _fw_reanalyze()
+                    log.info("启动时已同步框架：%s | 当天重算：%s", res, ra)
             except Exception:
                 log.debug("启动时框架同步失败（忽略）", exc_info=True)
 

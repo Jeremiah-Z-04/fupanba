@@ -1,7 +1,12 @@
 {
- "version": "9753abfadb82",
- "count": 785,
+ "version": "27e2452972a2",
+ "count": 851,
  "families": {
+  "“羊”字辈": [
+   "阳字辈",
+   "洋字辈",
+   "羊字辈"
+  ],
   "机器人": [
    "机器人",
    "具身智能",
@@ -313,6 +318,46 @@
   },
   {
    "theme": "业绩增长",
+   "sub": "业绩扭亏",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "业绩增长",
+   "sub": "业绩改善",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "业绩增长",
+   "sub": "业绩预增",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "业绩增长",
+   "sub": "净利增长",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "业绩增长",
+   "sub": "营收增长",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "业绩增长",
    "sub": "",
    "source": "kpl",
    "enabled": 1,
@@ -334,6 +379,14 @@
    "enabled": 1,
    "note": "",
    "sort_order": 186
+  },
+  {
+   "theme": "中报增长",
+   "sub": "半年报减亏",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
   },
   {
    "theme": "中报增长",
@@ -793,6 +846,14 @@
   },
   {
    "theme": "元器件",
+   "sub": "精密零组件",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "元器件",
    "sub": "",
    "source": "kpl",
    "enabled": 1,
@@ -1153,6 +1214,30 @@
   },
   {
    "theme": "农业",
+   "sub": "复合肥",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "农业",
+   "sub": "玉米加工",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "农业",
+   "sub": "生猪养殖",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "农业",
    "sub": "百草枯",
    "source": "manual",
    "enabled": 1,
@@ -1161,10 +1246,26 @@
   },
   {
    "theme": "农业",
+   "sub": "草甘膦",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "农业",
    "sub": "采棉机",
    "source": "manual",
    "enabled": 1,
    "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "农业",
+   "sub": "饲料主业",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31 补",
    "sort_order": 0
   },
   {
@@ -1329,10 +1430,34 @@
   },
   {
    "theme": "化工",
+   "sub": "TAC膜",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "化工",
    "sub": "乳酸",
    "source": "manual",
    "enabled": 1,
    "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "化工",
+   "sub": "染料中间体",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31 补",
+   "sort_order": 0
+  },
+  {
+   "theme": "化工",
+   "sub": "染料产业链",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
    "sort_order": 0
   },
   {
@@ -1657,6 +1782,14 @@
   },
   {
    "theme": "医药",
+   "sub": "化学制药",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
    "sub": "医药外包",
    "source": "manual",
    "enabled": 1,
@@ -1697,6 +1830,22 @@
   },
   {
    "theme": "医药",
+   "sub": "抗感染药",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "抗生素",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
    "sub": "智能制药",
    "source": "manual",
    "enabled": 1,
@@ -1709,6 +1858,14 @@
    "source": "manual",
    "enabled": 1,
    "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "医药",
+   "sub": "肿瘤管线",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
    "sort_order": 0
   },
   {
@@ -2057,6 +2214,14 @@
   },
   {
    "theme": "国产软件",
+   "sub": "数据库",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "国产软件",
    "sub": "",
    "source": "kpl",
    "enabled": 1,
@@ -2065,10 +2230,50 @@
   },
   {
    "theme": "国有企业",
+   "sub": "国企背景",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "国有企业",
+   "sub": "国资控股",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "国有企业",
+   "sub": "国资背景",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "国有企业",
    "sub": "温州国资",
    "source": "manual",
    "enabled": 1,
    "note": "LLM归类 10-30 第三批",
+   "sort_order": 0
+  },
+  {
+   "theme": "国有企业",
+   "sub": "福建国资",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "国有企业",
+   "sub": "黑龙江国资",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
    "sort_order": 0
   },
   {
@@ -2126,6 +2331,14 @@
    "enabled": 1,
    "note": "",
    "sort_order": 184
+  },
+  {
+   "theme": "地产链",
+   "sub": "物业管理",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
   },
   {
    "theme": "地产链",
@@ -2206,6 +2419,22 @@
    "enabled": 1,
    "note": "",
    "sort_order": 59
+  },
+  {
+   "theme": "基础建设",
+   "sub": "建筑装饰",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "基础建设",
+   "sub": "水泥熟料",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
   },
   {
    "theme": "基础建设",
@@ -2601,6 +2830,22 @@
   },
   {
    "theme": "实控人变更",
+   "sub": "控制权变更",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "实控人变更",
+   "sub": "控制权拟变更",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "实控人变更",
    "sub": "",
    "source": "kpl",
    "enabled": 1,
@@ -2697,10 +2942,34 @@
   },
   {
    "theme": "并购重组",
+   "sub": "要约收购",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "并购重组",
+   "sub": "资产重组",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "并购重组",
    "sub": "赛德盛并购",
    "source": "manual",
    "enabled": 1,
    "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "并购重组",
+   "sub": "重大资产重组",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
    "sort_order": 0
   },
   {
@@ -2793,6 +3062,14 @@
   },
   {
    "theme": "教育",
+   "sub": "数字教育",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "教育",
    "sub": "",
    "source": "kpl",
    "enabled": 1,
@@ -2814,6 +3091,14 @@
    "enabled": 1,
    "note": "",
    "sort_order": 236
+  },
+  {
+   "theme": "数字经济",
+   "sub": "数字人民币",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
   },
   {
    "theme": "数字经济",
@@ -3001,6 +3286,46 @@
   },
   {
    "theme": "文化传媒",
+   "sub": "AI影视",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "文化传媒",
+   "sub": "AI漫剧",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "文化传媒",
+   "sub": "AI短剧",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "文化传媒",
+   "sub": "出版发行",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "文化传媒",
+   "sub": "微短剧",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "文化传媒",
    "sub": "数字营销",
    "source": "manual",
    "enabled": 1,
@@ -3049,6 +3374,14 @@
   },
   {
    "theme": "新型城镇化",
+   "sub": "城市更新",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "新型城镇化",
    "sub": "",
    "source": "kpl",
    "enabled": 1,
@@ -3057,10 +3390,26 @@
   },
   {
    "theme": "新型工业化",
+   "sub": "工业智能",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "新型工业化",
    "sub": "工业母机",
    "source": "manual",
    "enabled": 1,
    "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "新型工业化",
+   "sub": "智能制造",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
    "sort_order": 0
   },
   {
@@ -3190,6 +3539,14 @@
    "enabled": 1,
    "note": "",
    "sort_order": 85
+  },
+  {
+   "theme": "智能交通",
+   "sub": "智慧交通",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
   },
   {
    "theme": "智能交通",
@@ -3881,6 +4238,14 @@
   },
   {
    "theme": "汽车零部件",
+   "sub": "汽车轻量化",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "汽车零部件",
    "sub": "",
    "source": "kpl",
    "enabled": 1,
@@ -4077,6 +4442,14 @@
    "source": "manual",
    "enabled": 1,
    "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "消费电子",
+   "sub": "智能终端",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
    "sort_order": 0
   },
   {
@@ -4297,6 +4670,14 @@
   },
   {
    "theme": "物流",
+   "sub": "跨境物流",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "物流",
    "sub": "",
    "source": "kpl",
    "enabled": 1,
@@ -4457,6 +4838,22 @@
   },
   {
    "theme": "电力",
+   "sub": "热电联产",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "电力",
+   "sub": "电线电缆",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "电力",
    "sub": "",
    "source": "kpl",
    "enabled": 1,
@@ -4486,6 +4883,14 @@
    "enabled": 1,
    "note": "",
    "sort_order": 39
+  },
+  {
+   "theme": "电子烟",
+   "sub": "新型烟草",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
   },
   {
    "theme": "电子烟",
@@ -4801,6 +5206,14 @@
   },
   {
    "theme": "算力",
+   "sub": "液冷散热",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "算力",
    "sub": "",
    "source": "kpl",
    "enabled": 1,
@@ -4989,6 +5402,14 @@
    "source": "manual",
    "enabled": 1,
    "note": "LLM归类 10-30 第二批",
+   "sort_order": 0
+  },
+  {
+   "theme": "芯片",
+   "sub": "半导体材料",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
    "sort_order": 0
   },
   {
@@ -5385,6 +5806,14 @@
   },
   {
    "theme": "通信",
+   "sub": "CPO",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "通信",
    "sub": "HDI板",
    "source": "manual",
    "enabled": 1,
@@ -5393,10 +5822,58 @@
   },
   {
    "theme": "通信",
+   "sub": "光纤光缆",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "通信",
+   "sub": "光通信",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "通信",
+   "sub": "光通信测试",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "通信",
+   "sub": "印制电路板",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "通信",
+   "sub": "高端HDI",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "通信",
    "sub": "高速铜缆",
    "source": "manual",
    "enabled": 1,
    "note": "LLM归类 10-30 第二批",
+   "sort_order": 0
+  },
+  {
+   "theme": "通信",
+   "sub": "高阶HDI",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
    "sort_order": 0
   },
   {
@@ -5581,6 +6058,14 @@
    "source": "manual",
    "enabled": 1,
    "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "酿酒",
+   "sub": "黄酒主业",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
    "sort_order": 0
   },
   {
@@ -5814,6 +6299,14 @@
    "enabled": 1,
    "note": "",
    "sort_order": 212
+  },
+  {
+   "theme": "锂电池",
+   "sub": "复合铜箔",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
   },
   {
    "theme": "锂电池",
@@ -6057,6 +6550,30 @@
   },
   {
    "theme": "零售",
+   "sub": "商业综合体",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "零售",
+   "sub": "商业零售",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "零售",
+   "sub": "硬折扣",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
+  },
+  {
+   "theme": "零售",
    "sub": "鸣鸣很忙",
    "source": "manual",
    "enabled": 0,
@@ -6078,6 +6595,14 @@
    "enabled": 1,
    "note": "",
    "sort_order": 126
+  },
+  {
+   "theme": "非金属材料",
+   "sub": "日用陶瓷",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31",
+   "sort_order": 0
   },
   {
    "theme": "非金属材料",
@@ -6189,6 +6714,14 @@
    "source": "manual",
    "enabled": 0,
    "note": "LLM归类 10-30",
+   "sort_order": 0
+  },
+  {
+   "theme": "食品饮料",
+   "sub": "功能糖",
+   "source": "manual",
+   "enabled": 1,
+   "note": "3个月批量归类 10-31 补",
    "sort_order": 0
   },
   {

@@ -7,6 +7,18 @@ const state = {
   themes: [],
   leaders: [],
   activeTheme: null,
+  iso: null,           // 独立个股题材数据，视图来回切换时要重渲染
+  view: "zt",          // zt=涨停题材 / burst=爆量题材
+  burstMult: 2,        // 爆量档位：2 或 3（纯前端切换，不发请求）
+  burst: null,         // /api/volume/surge 原始 payload
+  burstTheme: null,
+  notes: null,         // {date, day, themes:{}, stocks:{}, count}
+  noteScope: "day",    // day | theme | stock
+  noteKey: "",         // 当前 scope 对应的题材名 / 股票代码
+  noteStock: null,     // {code, name}：点表格行选中的个股
+  noteTimer: null,
+  noteOpen: false,     // 笔记区是否展开（记 localStorage）
+  noteAutoOpened: false,  // 只在首次渲染时按「有没有笔记」自动展开一次
 };
 
 const HOLIDAY_KIND = { weekend: "周末", holiday: "节假日" };
@@ -40,7 +52,14 @@ function toggleTheme() {
 /* ---------- 动画封装（anime.js，非线性） ---------- */
 const A = {
   stagger(elements) {
-    if (typeof anime === "undefined" || !elements || !elements.length) return;
+    if (!elements || !elements.length) return;
+    const list = [...elements];
+    /* 兜底：标签页在后台/被遮挡时 rAF 会被暂停，动画卡在 opacity:0，
+       切回来之前内容一直"消失"。超时后清掉内联样式，保证最终一定可见。 */
+    const guard = setTimeout(() => {
+      list.forEach((el) => { el.style.opacity = ""; el.style.transform = ""; });
+    }, Math.min(480 + list.length * 30 + 500, 4000));
+    if (typeof anime === "undefined") { clearTimeout(guard); return; }
     anime({
       targets: elements,
       translateY: [12, 0],
@@ -48,6 +67,7 @@ const A = {
       duration: 480,
       delay: anime.stagger(30),
       easing: "easeOutExpo",
+      complete: () => clearTimeout(guard),
     });
   },
   pulse(el) {
@@ -84,6 +104,7 @@ const post = (path, body) => api(path, { method: "POST", body: JSON.stringify(bo
 
 /* ---------- 日期解析：休市日标注 + 自动用上一交易日 ---------- */
 async function applyDate(dateStr, opts = {}) {
+  await flushNote();      // 切日前先把还没落库的笔记发出去（快照带原日期，不会写错天）
   state.requestedDate = dateStr;
   let info;
   try {
@@ -141,10 +162,11 @@ async function applyDate(dateStr, opts = {}) {
 async function loadResults() {
   const d = state.date;
   if (!d) return;
-  const [themes, leaders, iso] = await Promise.all([
+  const [themes, leaders, iso, notes] = await Promise.all([
     api(`/api/themes?date=${d}`),
     api(`/api/leaders?date=${d}`),
     api(`/api/isolated?date=${d}`).catch(() => null),
+    api(`/api/notes?date=${d}`).catch(() => null),
   ]);
   // 独立个股题材：1~2 只题材里「没在别的板块出现过」的股票，从主列表拆出来。
   // hidden 是成员全在别处露过面的小题材，主列表也不再显示（避免占位）。
@@ -153,10 +175,19 @@ async function loadResults() {
   const isoNames = new Set([...isoItems.map((i) => i.theme_name), ...hidden]);
   state.themes = themes.filter((t) => !isoNames.has(t.theme_name));
   state.leaders = leaders;
+  state.iso = iso;
+  state.notes = notes || { date: d, day: "", themes: {}, stocks: {}, count: 0 };
+  state.noteStock = null;
+  renderNoteBar();
+
+  loadBreadth(d);                     // 情绪宽度两个视图共用，放分叉之前
+  if (state.view === "burst") {       // 爆量视图只多拉一个接口，不跑涨停那套渲染
+    await loadBurst(d);
+    return;
+  }
   renderThemes();
   renderIsolated(iso);
   loadUnassigned(d);
-  loadBreadth(d);
   if (state.activeTheme) renderLeaders(state.activeTheme);
   else if (state.themes.length) selectTheme(state.themes[0].theme_name);
 }
@@ -370,6 +401,7 @@ function onThemeClick(wrap) {
 
   wrap.classList.add("active");
   state.activeTheme = theme;
+  if (state.noteScope === "theme") syncNoteInput();
 
   if (isNarrow()) {
     wrap.classList.add("open");
@@ -416,11 +448,13 @@ function renderDetail(wrap) {
       <span class="ldr-pct">${pct ? pct.toFixed(2) + "%" : "-"}</span>
       <span class="ldr-sub">封单 ${fd} · 上板 ${l.zt_time || "-"}</span>`;
     bindRowCard(row, l.code);
+    row.addEventListener("click", () => selectStockForNote(l.code, l.name));
     detail.appendChild(row);
   });
 }
 
 function selectTheme(theme) {
+  flushNote();
   state.activeTheme = theme;
   const list = $("themeList");
   list.querySelectorAll(".theme-block.active").forEach((b) => b.classList.remove("active"));
@@ -428,6 +462,7 @@ function selectTheme(theme) {
     .find((b) => b.dataset.theme === theme);
   if (cur) cur.classList.add("active");
   renderLeaders(theme);
+  if (state.noteScope === "theme") syncNoteInput();   // 题材页签跟着板块走
 }
 
 function renderLeaders(theme) {
@@ -485,9 +520,381 @@ function renderLeaders(theme) {
         <td>${fd}</td><td>${l.zt_time || "-"}</td>`;
       tbody.appendChild(tr);
       bindRowCard(tr, l.code);
+      tr.addEventListener("click", () => selectStockForNote(l.code, l.name));
     });
   });
   A.stagger(tbody.querySelectorAll("tr"));
+}
+
+/* ---------- 爆量题材（当日量 >= 前5日最低量 × 2/3） ---------- */
+async function loadBurst(d) {
+  const hint = $("burstHint");
+  if (hint) { hint.hidden = false; hint.textContent = "加载爆量数据…"; }
+  // 先清空：否则加载期间上一个视图的涨停题材列表会挂在「爆量板块」标题下，明显误导
+  $("themeList").innerHTML = `<div class="unassigned-empty">加载中…</div>`;
+  $("themeCount").textContent = "";
+  let r;
+  try {
+    r = await api(`/api/volume/surge?date=${d}`);
+  } catch (e) {
+    if (hint) hint.textContent = "爆量数据加载失败: " + e.message;
+    return;
+  }
+  state.burst = r;
+  if (!r.ready) {
+    $("themeCount").textContent = "";
+    $("themeList").innerHTML =
+      `<div class="unassigned-empty">${esc(r.hint || "该日还没有成交量数据")}</div>`;
+    clearBurstTable();
+    if (hint) { hint.hidden = false; hint.textContent = r.hint || ""; }
+    return;
+  }
+  if (hint) {
+    const bw = (r.base_window || []).map((x) => x.slice(5)).join(" / ");
+    hint.textContent = (bw ? `${r.base_desc}（${bw}）` : r.base_desc) +
+      (r.partial ? " · 盘中快照，量不完整" : "");
+    hint.classList.toggle("warn", !!r.partial);
+  }
+  renderBurstThemes();
+}
+
+function burstSortedThemes() {
+  const m = state.burstMult;
+  return (state.burst.themes || [])
+    .filter((t) => (t["count_" + m] || 0) > 0)
+    .sort((a, b) => ((b["count_" + m] || 0) - (a["count_" + m] || 0)) ||
+                    ((b["max_" + m] || 0) - (a["max_" + m] || 0)));
+}
+
+function renderBurstThemes() {
+  const list = $("themeList");
+  list.innerHTML = "";
+  const m = state.burstMult;
+  const th = burstSortedThemes();
+  const tot = (state.burst && state.burst.totals) || {};
+  $("themeCount").textContent =
+    `${th.length} 个板块 · ≥${m}倍 · 去重 ${tot["surge_" + m] || 0} 只` +
+    (tot["unmapped_" + m] ? ` · 未归类 ${tot["unmapped_" + m]}` : "");
+  th.forEach((t) => list.appendChild(makeBurstBlock(t)));
+  A.stagger(list.querySelectorAll(".theme-item"));
+  requestAnimationFrame(updateScrollHint);
+  if (th.length) selectBurstTheme(th[0].theme_name);
+  else clearBurstTable();
+}
+
+function makeBurstBlock(t) {
+  const m = state.burstMult;
+  const n = t["count_" + m] || 0;
+  const mx = t["max_" + m] || 0;
+  const zt = t.zt_2 || 0;
+  const wrap = document.createElement("div");
+  wrap.className = "theme-block";
+  wrap.dataset.theme = t.theme_name;
+
+  const item = document.createElement("div");
+  item.className = "theme-item";
+  item.title = `${t.theme_name}：≥${m}倍爆量 ${n} 只` +
+    (zt ? `（其中涨停 ${zt} 只）` : "") + `，板块内最高 ${mx.toFixed(2)} 倍`;
+  item.innerHTML = `<span class="t-name">${esc(t.theme_name)}
+      <span class="t-count">${n} 只${zt ? `<i class="t-split">涨停${zt}</i>` : ""}\
+<i class="t-ratio">${mx.toFixed(1)}×</i></span></span>
+      <span class="t-caret">▸</span>`;
+  item.onclick = () => onBurstClick(wrap);
+
+  const detail = document.createElement("div");
+  detail.className = "theme-detail";
+  wrap.append(item, detail);
+  return wrap;
+}
+
+function onBurstClick(wrap) {
+  const list = $("themeList");
+  const wasOpen = wrap.classList.contains("open");
+  list.querySelectorAll(".theme-block.open").forEach((b) => b.classList.remove("open"));
+  list.querySelectorAll(".theme-block.active").forEach((b) => b.classList.remove("active"));
+  if (wasOpen) { state.burstTheme = null; hideCard(); return; }
+  wrap.classList.add("active");
+  state.burstTheme = wrap.dataset.theme;
+  if (isNarrow()) {
+    wrap.classList.add("open");
+    renderBurstDetail(wrap);
+    const first = wrap.querySelector(".theme-detail").firstElementChild;
+    if (first) {
+      const fr = first.getBoundingClientRect();
+      if (fr.bottom > window.innerHeight - 8) {
+        window.scrollBy({ top: fr.top - window.innerHeight * 0.52, behavior: "smooth" });
+      }
+    }
+  } else {
+    renderBurstTable(wrap.dataset.theme);
+  }
+}
+
+function burstRows(theme) {
+  const m = state.burstMult;
+  return (state.burst.stocks || [])
+    .filter((s) => s.theme === theme && s.ratio >= m)
+    .sort((a, b) => b.ratio - a.ratio);
+}
+
+/* 成交量（股）格式化：亿 / 万 */
+function fmtVol(v) {
+  const n = Number(v) || 0;
+  if (!n) return "-";
+  if (n >= 1e8) return (n / 1e8).toFixed(2) + "亿";
+  if (n >= 1e4) return (n / 1e4).toFixed(1) + "万";
+  return String(Math.round(n));
+}
+
+function burstTip(s) {
+  const src = s.src === "reason"
+    ? `涨停原因（${s.reason_date}）：${s.reason}`
+    : s.src === "zt_today" ? "当日已在涨停池，归属沿用涨停题材"
+      : s.src === "concept" ? "无涨停原因，按同花顺概念归类" : "未归类";
+  return src + (s.suspect ? " · 窗口数据不全" : "");
+}
+
+/* 手机：就地展开，复用龙头行的两行卡片布局，零新增 CSS */
+function renderBurstDetail(wrap) {
+  const detail = wrap.querySelector(".theme-detail");
+  const rows = burstRows(wrap.dataset.theme);
+  detail.innerHTML = "";
+  if (!rows.length) {
+    detail.innerHTML = `<div class="ldr-empty">该倍数下没有个股</div>`;
+    return;
+  }
+  rows.forEach((s) => {
+    const row = document.createElement("div");
+    row.className = "ldr-row";
+    row.title = burstTip(s);
+    row.innerHTML = `
+      <span class="ldr-rank"><span class="burst-ratio">${s.ratio.toFixed(1)}×</span></span>
+      <span class="ldr-main"><span class="stock-code">${s.code}</span>
+        <span class="stock-name">${esc(s.name)}</span></span>
+      <span class="ldr-lb">${fmtVol(s.volume)}</span>
+      <span class="ldr-pct">${Number(s.high_pct).toFixed(1)}%</span>
+      <span class="ldr-sub">基准 ${fmtVol(s.base_volume)}（${(s.base_date || "").slice(5)}）</span>`;
+    bindRowCard(row, s.code);
+    row.addEventListener("click", () => selectStockForNote(s.code, s.name));
+    detail.appendChild(row);
+  });
+}
+
+function selectBurstTheme(theme) {
+  flushNote();
+  state.burstTheme = theme;
+  const list = $("themeList");
+  list.querySelectorAll(".theme-block.active").forEach((b) => b.classList.remove("active"));
+  const cur = [...list.querySelectorAll(".theme-block")].find((b) => b.dataset.theme === theme);
+  if (cur) cur.classList.add("active");
+  renderBurstTable(theme);
+  if (state.noteScope === "theme") syncNoteInput();
+}
+
+function renderBurstTable(theme) {
+  hideCard();
+  const rows = burstRows(theme);
+  const m = state.burstMult;
+  const info = (state.burst.themes || []).find((t) => t.theme_name === theme);
+  const mx = info ? (info["max_" + m] || 0) : 0;
+  $("leaderTitle").innerHTML = `爆量明细 · ${esc(theme)} ` +
+    `<span class="hint">${rows.length} 只 · 最高 ${mx.toFixed(2)} 倍</span>`;
+  const tbody = $("burstTable").querySelector("tbody");
+  tbody.innerHTML = "";
+  rows.forEach((s) => {
+    const tr = document.createElement("tr");
+    const srcTag = s.src === "reason" ? "原因"
+      : s.src === "zt_today" ? "涨停" : (s.src === "concept" ? "概念" : "—");
+    tr.title = burstTip(s);
+    tr.innerHTML = `
+      <td><span class="stock-code">${s.code}</span><span class="stock-name">${esc(s.name)}</span>
+          <span class="burst-src">${srcTag}</span></td>
+      <td class="pct">${Number(s.high_pct).toFixed(2)}%</td>
+      <td class="burst-vol">${fmtVol(s.volume)}</td>
+      <td class="burst-vol">${fmtVol(s.base_volume)}</td>
+      <td class="burst-ratio">${s.ratio.toFixed(2)}×</td>
+      <td class="burst-date">${(s.base_date || "").slice(5)}</td>`;
+    tbody.appendChild(tr);
+    bindRowCard(tr, s.code);
+    tr.addEventListener("click", () => selectStockForNote(s.code, s.name));
+  });
+  A.stagger(tbody.querySelectorAll("tr"));
+}
+
+function clearBurstTable() {
+  $("burstTable").querySelector("tbody").innerHTML = "";
+  $("leaderTitle").innerHTML = `爆量明细 <span class="hint">← 点击左侧板块查看</span>`;
+}
+
+/* 视图切换：只切 DOM 显隐 + 重渲染，涨停那套状态原样保留 */
+async function setView(v) {
+  if (state.view === v) return;
+  state.view = v;
+  document.body.classList.toggle("burst", v === "burst");
+  document.querySelectorAll("#viewScope .seg-btn")
+    .forEach((b) => b.classList.toggle("on", b.dataset.view === v));
+  $("themeHeadLabel").textContent = v === "burst" ? "爆量板块" : "题材强度";
+  $("burstMult").hidden = v !== "burst";
+  $("burstHint").hidden = v !== "burst";
+  $("leaderTable").hidden = v === "burst";
+  $("burstTable").hidden = v !== "burst";
+  const cand = $("btnCandidates");
+  if (cand) cand.hidden = v === "burst";
+  hideCard();
+  // 两张表共用 right 容器，不归零会继承上一张表的滚动位置（表头被顶出视口）
+  const right = document.querySelector("main .right");
+  if (right) right.scrollTop = 0;
+  const scroller = document.querySelector(".theme-scroll");
+  if (scroller) scroller.scrollTop = 0;
+
+  if (v === "burst") {
+    state.activeTheme = null;
+    $("leaderTitle").innerHTML = `爆量明细 <span class="hint">← 点击左侧板块查看</span>`;
+    if (state.date) await loadBurst(state.date);
+  } else {
+    state.burstTheme = null;
+    renderThemes();
+    renderIsolated(state.iso);
+    if (state.date) loadUnassigned(state.date);
+    if (state.themes.length) selectTheme(state.themes[0].theme_name);
+  }
+}
+
+/* ---------- 复盘笔记（日 / 题材 / 个股三级） ---------- */
+/* 保存一律用「输入时的快照」，不是保存时的 state——
+   否则切日期/切板块之后，防抖才触发，内容会写到错误的日期上。 */
+let notePending = null;          // {date, scope, key, content}
+
+function noteKeyNow() {
+  if (state.noteScope === "theme") return state.activeTheme || "";
+  if (state.noteScope === "stock") return state.noteStock ? state.noteStock.code : "";
+  return "";
+}
+
+function noteValueOf(scope, key) {
+  const n = state.notes || {};
+  if (scope === "day") return n.day || "";
+  if (scope === "theme") return (n.themes || {})[key] || "";
+  return (n.stocks || {})[key] || "";
+}
+
+function noteCountOf(n) {
+  return ((n && n.day) ? 1 : 0)
+    + Object.keys((n && n.themes) || {}).length
+    + Object.keys((n && n.stocks) || {}).length;
+}
+
+function renderNoteBar() {
+  const bar = $("noteBar");
+  if (!bar) return;
+  // 只在本会话首次渲染时按「有没有笔记」自动展开一次，之后听用户的
+  if (!state.noteAutoOpened) {
+    state.noteAutoOpened = true;
+    if (noteCountOf(state.notes)) state.noteOpen = true;
+  }
+  $("noteBody").hidden = !state.noteOpen;
+  bar.classList.toggle("open", state.noteOpen);
+  $("noteToggle").textContent = state.noteOpen ? "▴" : "▾";
+  syncNoteInput();
+}
+
+function syncNoteInput() {
+  const tabs = $("noteTabs");
+  const input = $("noteInput");
+  if (!tabs || !input) return;
+
+  tabs.querySelector('[data-scope="stock"]').hidden = !state.noteStock;
+  // 上下文没了就退回「本日」，避免写到一个不存在的 key 上
+  if (state.noteScope === "theme" && !state.activeTheme) state.noteScope = "day";
+  if (state.noteScope === "stock" && !state.noteStock) state.noteScope = "day";
+
+  state.noteKey = noteKeyNow();
+  [...tabs.querySelectorAll(".seg-btn")]
+    .forEach((b) => b.classList.toggle("on", b.dataset.scope === state.noteScope));
+
+  input.value = noteValueOf(state.noteScope, state.noteKey);
+  input.placeholder = state.noteScope === "day"
+    ? "今天怎么想的…（失焦自动保存，清空即删除）"
+    : state.noteScope === "theme"
+      ? `关于「${state.activeTheme}」的看法…`
+      : `关于 ${state.noteStock ? state.noteStock.name : ""} 的看法…`;
+
+  const cnt = noteCountOf(state.notes);
+  $("noteMeta").textContent = input.value.length
+    ? `${input.value.length} 字`
+    : (cnt ? `本日 ${cnt} 条` : "");
+  loadNoteHistory();
+}
+
+async function loadNoteHistory() {
+  const box = $("noteHistory");
+  if (!box) return;
+  if (state.noteScope === "day" || !state.noteKey || !state.date) {
+    box.hidden = true;
+    return;
+  }
+  const q = `date=${state.date}&scope=${state.noteScope}` +
+            `&key=${encodeURIComponent(state.noteKey)}`;
+  try {
+    const r = await api(`/api/notes?${q}`);
+    const hist = (r.history || []).filter((h) => h.trade_date !== state.date);
+    if (!hist.length) { box.hidden = true; return; }
+    box.hidden = false;
+    box.innerHTML = `<div class="nh-head">历史 · ${hist.length} 条</div>` +
+      hist.map((h) => `<div class="nh-item">
+        <span class="nh-date">${h.trade_date.slice(5)}</span>
+        <span class="nh-text">${esc(h.content)}</span></div>`).join("");
+  } catch (e) {
+    box.hidden = true;
+  }
+}
+
+function setNoteScope(scope) {
+  if (!["day", "theme", "stock"].includes(scope)) return;
+  if (scope === "theme" && !state.activeTheme) return;
+  if (scope === "stock" && !state.noteStock) return;
+  flushNote();                    // 上一页签没存完的先发出去
+  state.noteScope = scope;
+  syncNoteInput();
+}
+
+/* 点表格行 = 选中个股（只记录，不打扰：不自动切页签、不自动展开） */
+function selectStockForNote(code, name) {
+  state.noteStock = { code, name };
+  const tab = $("noteTabs").querySelector('[data-scope="stock"]');
+  if (tab) tab.hidden = false;
+  if (state.noteScope === "stock") syncNoteInput();
+}
+
+function applyNoteLocally(p, r) {
+  const n = state.notes;
+  if (!n) return;
+  const text = (p.content || "").trim();
+  if (p.scope === "day") {
+    n.day = text;
+  } else {
+    const bucket = p.scope === "theme"
+      ? (n.themes = n.themes || {}) : (n.stocks = n.stocks || {});
+    if (text) bucket[p.key] = text;
+    else delete bucket[p.key];
+  }
+  n.count = noteCountOf(n);
+}
+
+async function flushNote() {
+  if (state.noteTimer) { clearTimeout(state.noteTimer); state.noteTimer = null; }
+  const p = notePending;
+  notePending = null;
+  if (!p || !p.date) return;
+  if (p.scope !== "day" && !p.key) return;
+  try {
+    const r = await post("/api/note", p);
+    applyNoteLocally(p, r);
+    const t = new Date().toLocaleTimeString("zh-CN", { hour12: false }).slice(0, 5);
+    if ($("noteMeta")) $("noteMeta").textContent = r.deleted ? "已清空" : `已保存 ${t}`;
+  } catch (e) {
+    if ($("noteMeta")) $("noteMeta").textContent = "保存失败: " + e.message;
+  }
 }
 
 /* ---------- 个股悬浮卡：悬停梯队看涨停原因 / 题材 / 同题材共性 ---------- */
@@ -581,6 +988,10 @@ function cardHtml(c) {
           <span class="sc-rt">${esc(x.zt_time || "-")}</span>
           <span class="sc-rr">${esc(x.reason || "无原因")}</span></div>`).join("")}</div></div>`
     : "";
+  const myNote = c.note
+    ? `<div class="sc-sec"><div class="sc-lab">我的笔记</div>
+        <div class="sc-mynote">${esc(c.note)}</div></div>`
+    : "";
   const fmv = c.float_mv ? (c.float_mv / 1e8).toFixed(1) + "亿" : "-";
   return `
     <div class="sc-head">
@@ -594,6 +1005,7 @@ function cardHtml(c) {
     </div>
     ${kws ? `<div class="sc-sec"><div class="sc-lab">涨停原因</div><div class="sc-kws">${kws}</div></div>` : ""}
     ${recent}
+    ${myNote}
     ${themes ? `<div class="sc-sec"><div class="sc-lab">所属题材</div><div class="sc-kws">${themes}</div></div>` : ""}
     ${common ? `<div class="sc-sec"><div class="sc-lab">同题材共性 <span class="sc-note">算法归纳 · 非新闻</span></div>
        <div class="sc-kws">${common}</div>${peers ? `<div class="sc-peers">${peers}</div>` : ""}</div>` : ""}
@@ -826,11 +1238,19 @@ $("btnFetch").onclick = async () => {
 };
 
 $("btnBackfill").onclick = async () => {
-  if (!confirm("将回填最近 30 个交易日的涨停/题材数据（约需几分钟），确定？")) return;
-  setStatus("历史回填中…（请稍候，勿关闭）");
+  const raw = prompt(
+    "回填最近多少个交易日？\n（4 月起约需 150；库里已有的日期会自动跳过，可反复跑）",
+    "30");
+  if (raw === null) return;
+  const days = Math.max(1, Math.min(400, parseInt(raw, 10) || 30));
+  if (!confirm(`将回填最近 ${days} 个交易日的涨停/题材数据（约需几分钟），确定？`)) return;
+  setStatus(`历史回填中…（最近 ${days} 个交易日，请勿关闭页面）`);
   try {
-    const r = await post("/api/backfill", { days: 30 });
-    setStatus(`历史回填完成：${r.done.length} 个交易日`);
+    const r = await post("/api/backfill", { days });
+    const fail = (r.failed || []).length;
+    setStatus(`历史回填完成：新增 ${r.done.length} 个交易日` +
+      (r.skipped ? `，跳过已有 ${r.skipped}` : "") +
+      (fail ? `，失败 ${fail} 天（可再点一次补齐）` : ""));
     await loadDates();
     await applyDate(state.requestedDate || state.date, { silent: true });
   } catch (e) { setStatus("历史回填失败: " + e.message); }
@@ -1447,9 +1867,15 @@ function bindFramework() {
       setStatus("正在拉取最新框架…");
       try {
         const r = await post("/api/framework/sync", {});
-        setStatus(`框架已更新：${r.rows} 条 / ${r.themes} 个题材（版本 ${r.version}）· 当日复盘需重算才生效`);
+        const ra = r.reanalyze || {};
+        let msg = `框架已更新：${r.rows} 条 / ${r.themes} 个题材（版本 ${r.version}）`;
+        if (ra.ok) msg += ` · 已按新框架重算 ${ra.date}（${ra.themes} 个题材）`;
+        else if (ra.skipped) msg += ` · ${ra.reason}`;
+        else if (ra.reason) msg += ` · 重算失败：${ra.reason}`;
+        setStatus(msg);
         await loadFramework("");
         fillThemeOptions();
+        if (ra.ok && state.date) await loadDay(state.date);   // 刷新当天数据
       } catch (e) {
         setStatus("框架同步失败: " + e.message);
       } finally {
@@ -1601,6 +2027,85 @@ function bindFramework() {
   };
 }
 try { bindFramework(); } catch (e) { console.error("绑定题材框架面板失败", e); }
+
+/* ---------- 爆量题材：视图切换 / 倍数切换 / 回补 ---------- */
+try {
+  $("viewScope").addEventListener("click", (e) => {
+    const b = e.target.closest(".seg-btn");
+    if (b && b.dataset.view !== state.view) setView(b.dataset.view).catch(() => {});
+  });
+
+  // 切倍数纯前端重渲染：左栏家数与右栏明细都来自同一份 payload，不会打架
+  $("burstMult").addEventListener("click", (e) => {
+    const b = e.target.closest(".seg-btn");
+    const m = b ? Number(b.dataset.mult) : 0;
+    if (!m || m === state.burstMult) return;
+    state.burstMult = m;
+    [...$("burstMult").querySelectorAll(".seg-btn")]
+      .forEach((x) => x.classList.toggle("on", Number(x.dataset.mult) === m));
+    if (state.burst && state.burst.ready) renderBurstThemes();
+  });
+
+  $("btnVolBackfill").addEventListener("click", async () => {
+    const btn = $("btnVolBackfill");
+    if (!confirm("回补全市场近 20 个交易日的逐日成交量（约 6-10 分钟，只需跑一次），确定？")) return;
+    btn.disabled = true;
+    try {
+      const r = await post("/api/volume/backfill", { days: 20 });
+      if (r.already) setStatus("爆量回补已在运行中…");
+      const timer = setInterval(async () => {
+        let j;
+        try { j = await api("/api/volume/job"); } catch (e) { return; }
+        const pct = j.total ? Math.floor((j.done / j.total) * 100) : 0;
+        setStatus(`爆量回补中… ${pct}%（${j.done}/${j.total}，失败 ${j.fail}）`);
+        if (j.running) return;
+        clearInterval(timer);
+        btn.disabled = false;
+        setStatus(j.message || "爆量回补完成");
+        try { await post("/api/volume/scan", { date: state.date }); } catch (e) { /* 下次访问会自愈 */ }
+        if (state.view === "burst") await loadBurst(state.date);
+      }, 1000);
+    } catch (e) {
+      btn.disabled = false;
+      setStatus("爆量回补启动失败: " + e.message);
+    }
+  });
+} catch (e) { console.error("绑定爆量面板失败", e); }
+
+/* ---------- 复盘笔记：展开/页签/输入 ---------- */
+try {
+  state.noteOpen = localStorage.getItem("noteOpen") === "1";
+  $("noteBody").hidden = !state.noteOpen;
+
+  $("noteToggle").addEventListener("click", () => {
+    state.noteOpen = !state.noteOpen;
+    localStorage.setItem("noteOpen", state.noteOpen ? "1" : "0");
+    $("noteBody").hidden = !state.noteOpen;
+    $("noteBar").classList.toggle("open", state.noteOpen);
+    $("noteToggle").textContent = state.noteOpen ? "▴" : "▾";
+    if (state.noteOpen) syncNoteInput();
+  });
+
+  $("noteTabs").addEventListener("click", (e) => {
+    const b = e.target.closest(".seg-btn");
+    if (b && !b.hidden) setNoteScope(b.dataset.scope);
+  });
+
+  const input = $("noteInput");
+  input.addEventListener("input", () => {
+    // 快照当前上下文：之后切日期/切板块，这份内容仍然写回它原本的日期
+    notePending = {
+      date: state.date,
+      scope: state.noteScope,
+      key: state.noteScope === "day" ? "" : state.noteKey,
+      content: input.value,
+    };
+    $("noteMeta").textContent = input.value.length ? `${input.value.length} 字` : "未保存";
+    if (state.noteTimer) clearTimeout(state.noteTimer);
+    state.noteTimer = setTimeout(flushNote, 900);
+  });
+  input.addEventListener("blur", () => { flushNote(); });
+} catch (e) { console.error("绑定笔记失败", e); }
 
 /* ---------- 题材列表滚动提示 ---------- */
 $("themeList").addEventListener("scroll", updateScrollHint, { passive: true });

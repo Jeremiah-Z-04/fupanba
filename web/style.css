@@ -684,6 +684,95 @@ h2 .hint, h2 span { color: var(--text-tertiary); font-size: 12px; font-weight: 4
 #leaderTable tbody tr:hover { background: var(--fill-line); }
 #leaderTable tbody tr:last-child td { border-bottom: none; }
 
+/* ---------- 爆量题材（当日量 >= 前5日最低量 × 2/3） ---------- */
+/* 明细表与龙头表共用一套外观，只有倍数/量能数字是新增的 */
+#burstTable { width: 100%; border-collapse: separate; border-spacing: 0; }
+#burstTable th {
+  text-align: left; padding: 10px 8px; white-space: nowrap;
+  color: var(--text-tertiary); font-size: 12px; font-weight: 500;
+  border-bottom: 1px solid var(--glass-border);
+}
+#burstTable td {
+  padding: 11px 8px; white-space: nowrap;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--fill-line);
+}
+#burstTable tbody tr { transition: background 0.15s var(--ease-expo); }
+#burstTable tbody tr:hover { background: var(--fill-line); }
+#burstTable tbody tr:last-child td { border-bottom: none; }
+
+.left-scope { margin-bottom: var(--s2); }
+.seg-mult { margin-bottom: var(--s2); }
+/* .seg 自带 display:inline-flex，会盖掉 hidden 的 display:none —— 必须显式压回 */
+.seg[hidden] { display: none; }
+.bd-hint.warn { color: var(--gold); }
+
+/* 左栏板块行里的「最高倍数」角标 */
+.theme-item .t-ratio {
+  font-style: normal; margin-left: 5px;
+  color: var(--gold); font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 爆量视图下涨停专属的两块（未归纳 / 独立个股）没有意义，藏掉避免误导 */
+body.burst #unassignedBox,
+body.burst #isolatedBox { display: none !important; }
+
+.burst-ratio { color: var(--gold); font-weight: 700; font-variant-numeric: tabular-nums; }
+.burst-vol { color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+.burst-date { color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
+.burst-src {
+  margin-left: 5px; font-size: 10px; padding: 1px 6px;
+  border-radius: var(--r-pill); background: var(--fill-2);
+  color: var(--text-tertiary);
+}
+
+/* ---------- 复盘笔记（日 / 题材 / 个股三级） ---------- */
+.note-bar {
+  margin-bottom: var(--s3);
+  padding: 8px 10px;
+  border-radius: var(--r-md);
+  background: var(--fill-1);
+  border: 1px solid var(--fill-line);
+}
+.note-head { display: flex; align-items: center; gap: var(--s2); }
+.note-seg { margin-bottom: 0; padding: 2px; }
+.note-seg .seg-btn { padding: 4px 11px; font-size: 12px; }
+.note-meta {
+  flex: 1; font-size: 11px; color: var(--text-tertiary);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.note-toggle {
+  border: none; background: transparent; color: var(--text-secondary);
+  font-size: 12px; padding: 2px 5px; cursor: pointer;
+  border-radius: var(--r-sm);
+  transition: color 0.15s var(--ease-expo);
+}
+.note-toggle:hover { color: var(--text); }
+.note-body { margin-top: var(--s2); }
+#noteInput {
+  width: 100%; box-sizing: border-box;
+  font: inherit; font-size: 13px; line-height: 1.65;
+  color: var(--text); background: var(--bg-elevated);
+  border: 1px solid var(--glass-border); border-radius: var(--r-sm);
+  padding: 8px 10px; resize: vertical; min-height: 62px; max-height: 40vh;
+}
+#noteInput:focus { outline: none; border-color: var(--up); }
+#noteInput::placeholder { color: var(--text-tertiary); }
+.note-history { margin-top: 6px; max-height: 132px; overflow-y: auto; }
+.nh-head { font-size: 10px; color: var(--text-tertiary); margin-bottom: 3px; }
+.nh-item { display: flex; gap: 6px; font-size: 11.5px; padding: 2px 0; }
+.nh-date {
+  color: var(--text-tertiary); flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.nh-text { color: var(--text-secondary); white-space: pre-wrap; word-break: break-word; }
+.sc-mynote {
+  font-size: 12px; line-height: 1.6; color: var(--text-secondary);
+  white-space: pre-wrap; word-break: break-word;
+  max-height: 120px; overflow-y: auto;
+}
+
 .rank-badge {
   display: inline-block; min-width: 40px; text-align: center;
   background: var(--up); color: #fff;

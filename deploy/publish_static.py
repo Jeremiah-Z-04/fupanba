@@ -82,9 +82,12 @@ def main() -> int:
     print(f"推送到 origin/{branch} …")
     push = git("push", "-u", "origin", branch, check=False)
     if push.returncode != 0:
-        print("推送失败：\n" + (push.stderr or push.stdout).strip())
-        print("\n常见原因：没登录 GitHub（git 会要求账号密码/令牌）、网络不通、仓库是私有的但 Pages 需要付费。")
-        return 1
+        # github.com 常被墙/被代理拦，但 api.github.com 通常可达。
+        # 降级走 REST API（复用凭据管理器里的 GitHub 记录），不强求用户开 VPN。
+        print("git push 失败（github.com 不可达），改用 GitHub API 推送…")
+        r = subprocess.run(
+            [sys.executable, str(ROOT / "deploy" / "push_via_api.py")], cwd=ROOT)
+        return r.returncode
 
     print("\n推送完成。")
     print("首次使用还需要在 GitHub 仓库里开一次 Pages：")

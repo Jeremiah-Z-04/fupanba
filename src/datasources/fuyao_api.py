@@ -401,6 +401,59 @@ def index_daily(index_thscode="000001.SH", start_ms=None, end_ms=None, force=Fal
     return data.get("item") or []
 
 
+def stock_daily(thscode, start_ms=None, end_ms=None, adjust="forward",
+                force=False, ttl_group="kline"):
+    """个股日 K（单只）。接口失败返回 None，无数据返回 []。
+
+    端点必须是 /api/a-share/prices/historical（带 a-share）。
+    走成 /api/a-share-index/... 会静默返回空且 code=0，不报错——
+    这是本接口最容易踩的坑，deploy/probe_volume.py 专门校验。
+
+    返回项：date / date_ms / open / high / low / close / volume(股) / turnover(元)
+    """
+    if not thscode:
+        return None
+    params = {"thscode": thscode, "interval": "1d", "adjust": adjust}
+    if start_ms is not None:
+        params["start"] = start_ms
+    if end_ms is not None:
+        params["end"] = end_ms
+    data = _request("/api/a-share/prices/historical", params, timeout=10,
+                    ttl_group=ttl_group, force=force)
+    if not data:
+        return None
+    return normalize_bars(data.get("item") or [])
+
+
+def normalize_bars(items):
+    """同花顺日 K item[] -> 升序标准 bar 列表。
+
+    批量回补时传 ttl_group=None 不写全局 _CACHE：5573 条缓存会白占
+    十几 MB，而 _CACHE 没有淘汰机制。
+    """
+    out = []
+    for it in items:
+        ms = it.get("date_ms")
+        if ms is None:
+            continue
+        try:
+            dt = datetime.datetime.fromtimestamp(int(ms) / 1000, _TZ_SH)
+        except (TypeError, ValueError, OSError):
+            continue
+        out.append({
+            "date": dt.strftime("%Y-%m-%d"),
+            "date_ms": int(ms),
+            "open": float(it.get("open_price") or 0),
+            "high": float(it.get("high_price") or 0),
+            "low": float(it.get("low_price") or 0),
+            "close": float(it.get("close_price") or 0),
+            "volume": float(it.get("volume") or 0),
+            "turnover": float(it.get("turnover") or 0),
+        })
+    out.sort(key=lambda x: x["date"])
+    return out
+
+
 # ---------------------------------------------------------------- 板块 / 标的
 
 def ths_index_list(tag="cn_concept", force=False):

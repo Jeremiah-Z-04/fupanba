@@ -127,10 +127,72 @@ CREATE TABLE IF NOT EXISTS kpl_theme (
     PRIMARY KEY (theme_name, sub_name)
 );
 
+-- 逐日全市场成交量（股）。停牌日无行，所以「前5日最低量」天然取不到 0。
+-- 当日由全市场快照落库（每日 1 次请求），历史由个股日 K 回补。
+CREATE TABLE IF NOT EXISTS daily_volume (
+    trade_date  TEXT NOT NULL,
+    code        TEXT NOT NULL,
+    volume      REAL NOT NULL DEFAULT 0,    -- 成交量（股）
+    amount      REAL DEFAULT 0,             -- 成交额（元），仅用于交叉校验口径
+    close       REAL DEFAULT 0,
+    prev_close  REAL DEFAULT 0,
+    is_snapshot INTEGER DEFAULT 0,          -- 1=盘中快照（当日量不全）
+    source      TEXT DEFAULT '',            -- snapshot / kline
+    fetched_at  TEXT DEFAULT (datetime('now','localtime')),
+    PRIMARY KEY (trade_date, code)
+);
+
+-- 当日爆量股（一股一行）。ratio = volume / base_volume
+CREATE TABLE IF NOT EXISTS volume_surge (
+    trade_date  TEXT NOT NULL,
+    code        TEXT NOT NULL,
+    name        TEXT DEFAULT '',
+    volume      REAL DEFAULT 0,
+    base_volume REAL DEFAULT 0,             -- 前 N 个交易日中的最低成交量
+    base_date   TEXT DEFAULT '',            -- 最低量那天（便于自证倍数）
+    avg5_volume REAL DEFAULT 0,             -- 窗口均量（备查，不参与判定）
+    bars        INTEGER DEFAULT 0,          -- 窗口内实际有几天数据
+    ratio       REAL DEFAULT 0,
+    high_pct    REAL DEFAULT 0,
+    is_suspect  INTEGER DEFAULT 0,          -- 1=窗口不全（停牌/复牌/新股）
+    reason      TEXT DEFAULT '',            -- 命中的涨停原因原文
+    reason_date TEXT DEFAULT '',
+    map_source  TEXT DEFAULT '',            -- zt_today / reason / concept / ''
+    updated_at  TEXT DEFAULT (datetime('now','localtime')),
+    PRIMARY KEY (trade_date, code)
+);
+
+-- 爆量股 × 题材板块（一股可多题材，各板块家数之和 > 去重股数属正常）
+CREATE TABLE IF NOT EXISTS volume_surge_theme (
+    trade_date TEXT NOT NULL,
+    theme_name TEXT NOT NULL,
+    code       TEXT NOT NULL,
+    sub_tags   TEXT DEFAULT '',
+    PRIMARY KEY (trade_date, theme_name, code)
+);
+
+-- 复盘笔记：日 / 题材 / 个股三级纯文本。人工输入，永不进静态站。
+-- 按交易日存（记录当时判断，回看能验证对错）。
+CREATE TABLE IF NOT EXISTS review_note (
+    scope      TEXT NOT NULL,               -- day / theme / stock
+    trade_date TEXT NOT NULL,               -- 交易日
+    ref_key    TEXT NOT NULL DEFAULT '',    -- theme_name 或 code；scope=day 为空串
+    content    TEXT DEFAULT '',
+    updated_at TEXT DEFAULT (datetime('now','localtime')),
+    PRIMARY KEY (scope, trade_date, ref_key)
+);
+
 CREATE INDEX IF NOT EXISTS idx_zt_date ON daily_zt_pool(trade_date);
 CREATE INDEX IF NOT EXISTS idx_leader_date ON leader_result(trade_date);
 CREATE INDEX IF NOT EXISTS idx_override_date ON override_log(trade_date);
 CREATE INDEX IF NOT EXISTS idx_kpl_theme ON kpl_theme(theme_name);
+CREATE INDEX IF NOT EXISTS idx_dv_code ON daily_volume(code, trade_date);
+CREATE INDEX IF NOT EXISTS idx_vs_date ON volume_surge(trade_date);
+CREATE INDEX IF NOT EXISTS idx_vst_date ON volume_surge_theme(trade_date);
+-- 必需：concept_member 主键是 (concept_name, code)，按 code 查会全表扫 7 万行
+CREATE INDEX IF NOT EXISTS idx_concept_code ON concept_member(code);
+CREATE INDEX IF NOT EXISTS idx_note_date ON review_note(trade_date);
+CREATE INDEX IF NOT EXISTS idx_note_ref ON review_note(scope, ref_key, trade_date);
 """
 
 

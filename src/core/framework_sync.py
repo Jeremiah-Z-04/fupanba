@@ -19,10 +19,14 @@ from src.log import get_logger
 
 log = get_logger(__name__)
 
-# 主地址 raw.githubusercontent（更新即时）；备用 jsdelivr（国内 CDN，有几分钟缓存）
+# 按顺序尝试，谁通用谁。本机实测（校园网/VPN 环境）只有 fastly.jsdelivr 稳定可达，
+# raw.githubusercontent、cdn.jsdelivr 和几个国内镜像都不通 —— 朋友的网络可能不一样，
+# 所以把 GitHub Pages 上那份也留着（和 CDN 是同一份文件，只是域名不同）。
 DEFAULT_URLS = (
-    "https://raw.githubusercontent.com/Jeremiah-Z-04/fupanba/main/docs/framework.json",
+    "https://jeremiah-z-04.github.io/fupanba/framework.json",
+    "https://fastly.jsdelivr.net/gh/Jeremiah-Z-04/fupanba@main/docs/framework.json",
     "https://cdn.jsdelivr.net/gh/Jeremiah-Z-04/fupanba@main/docs/framework.json",
+    "https://raw.githubusercontent.com/Jeremiah-Z-04/fupanba/main/docs/framework.json",
 )
 
 TIMEOUT = 8

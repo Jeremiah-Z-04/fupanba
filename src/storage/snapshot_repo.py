@@ -104,6 +104,18 @@ class SnapshotRepo:
         r = self.db.query("SELECT value FROM meta WHERE key='concept_updated_at'")
         return r[0]["value"] if r else ""
 
+    def last_reason(self, code: str) -> dict | None:
+        """该股最近一次有涨停原因的记录（供盘中原因未出时沿用）。
+
+        同花顺的涨停原因常常盘中还没写出来，但股票已经连板了（青岛食品、
+        地素时尚都出现过）。用上次的原因归类比瞎猜概念可靠得多。
+        """
+        rows = self.db.query(
+            "SELECT trade_date, reason FROM daily_zt_pool "
+            "WHERE code=? AND reason IS NOT NULL AND TRIM(reason)<>'' "
+            "ORDER BY trade_date DESC LIMIT 1", (code,))
+        return dict(rows[0]) if rows else None
+
     def concepts_of(self, code: str) -> list[str]:
         rows = self.db.query(
             "SELECT concept_name FROM concept_member WHERE code=?", (code,)

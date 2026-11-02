@@ -67,8 +67,11 @@ def main() -> int:
     branch = git("rev-parse", "--abbrev-ref", "HEAD").stdout.strip() or "main"
     push = git("push", "-u", "origin", branch, check=False)
     if push.returncode != 0:
-        print("推送失败：\n" + (push.stderr or push.stdout).strip())
-        return 1
+        # github.com 常被墙，api.github.com 可达；降级走 REST API，不需要用户开 VPN
+        print("git push 失败（github.com 不可达），改用 GitHub API 推送…")
+        r = subprocess.run(
+            [sys.executable, str(ROOT / "deploy" / "push_via_api.py")], cwd=ROOT)
+        return r.returncode
 
     print(f"\n已推送：{msg}")
     print("朋友的程序下次启动（或手动点「同步框架」）就会拿到这份新框架。")

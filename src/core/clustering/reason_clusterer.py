@@ -58,6 +58,27 @@ _GROWTH_WORDS = ("增长", "大增", "高增", "预增", "净利增", "暴增", 
 _DECLINE_WORDS = ("亏损", "预亏", "下滑", "下降", "减少", "降低", "减退", "暴雷")
 
 
+# ---------------------------------------------------------------- 横切题材细分桶
+# 大消费/羊字辈这类横切主线没有自己的细分词，按成员的**其他归属**映射到固定子类，
+# 让梯队里能看到「旅游酒店 / 零售百货 / 饮料酒水 / 服装家纺」这样的结构。
+CROSS_BUCKETS: dict[str, tuple[tuple[str, tuple[str, ...]], ...]] = {
+    "大消费": (
+        ("旅游酒店", ("旅游", "机场航空", "酒店")),
+        ("零售百货", ("零售", "商业百货")),
+        ("饮料酒水", ("食品饮料", "酿酒")),
+        ("服装家纺", ("服装家纺", "服装")),
+    ),
+}
+
+
+def _cross_bucket(theme: str, themes: list[str]) -> str:
+    buckets = CROSS_BUCKETS.get(theme)
+    if not buckets:
+        return ""
+    hits = [label for label, names in buckets if any(t in names for t in themes)]
+    return ",".join(hits[:3])
+
+
 def _performance_theme(word: str) -> str | None:
     """业绩类关键词 -> 「X季报增长」。非业绩词返回 None。
 
@@ -305,13 +326,51 @@ class ReasonClusterer(Clusterer):
         }
         clusters = anchors
 
-        # 2. 概念补全（成员制）：只补「涨停原因为空」的股票（创/科异动股、涨停但
-        #    原因延迟的股）。有涨停原因的股票以 reason 为准，不参与概念补全，
+        # 2. 盘中原因未出的股：沿用最近一次的涨停原因归类。
+        #    同花顺的涨停原因常盘中还没写出来，但股票已经连板（青岛食品、地素时尚
+        #    都出现过）。上次原因是复盘用过的资金逻辑，直接沿用比瞎猜概念可靠。
+        #    盘后 reason 出来后，当天的真实原因会自然覆盖这里的结果。
+        inherited: set[str] = set()
+        for s in stocks:
+            if s.get("reason"):
+                continue
+            hist = self.repo.last_reason(s["code"])
+            if not hist or not hist.get("reason"):
+                continue
+            kws = self._extract(hist["reason"])
+            if not kws:
+                continue
+            for kw in kws:
+                for theme, sub in self._canonicals_detail(kw):
+                    tag = sub
+                    if not tag and kw != theme and len(kw) <= 12:
+                        tag = kw
+                    bucket = clusters.setdefault(theme, [])
+                    codes = seen.setdefault(theme, set())
+                    if s["code"] in codes:
+                        if tag:
+                            for m in bucket:
+                                if m["code"] == s["code"]:
+                                    cur = [x for x in (m.get("sub_tags") or "").split(",") if x]
+                                    if tag not in cur:
+                                        m["sub_tags"] = ",".join([*cur, tag])
+                                    break
+                        continue
+                    row = dict(s)
+                    row["sub_tags"] = tag
+                    bucket.append(row)
+                    codes.add(s["code"])
+            inherited.add(s["code"])
+        if inherited:
+            log.info("盘中原因未出，沿用上次原因归类: %d 只", len(inherited))
+
+        # 3. 概念补全（成员制）：只补「涨停原因为空、也没有历史原因」的股票。
+        #    有涨停原因的股票以 reason 为准，不参与概念补全，
         #    否则静态概念（如「低空经济」）会把 reason 没写该题材的涨停股拖进来。
         #    只认「核心概念」（与主线同名、且成分不过宽），宽泛概念一律不认。
         sizes = self._concept_sizes()
         for s in stocks:
-            if s.get("reason"):
+            if s.get("reason") or s["code"] in inherited:
                 continue
             for c in self.repo.concepts_of(s["code"]):
                 key = self._concept_theme(c)
@@ -377,6 +436,22 @@ class ReasonClusterer(Clusterer):
             from src.core.clustering.merge import merge_themes
             clusters = merge_themes(clusters, self.merge_threshold)
 
+        # 5. 横切题材细分桶：大消费/羊字辈这类没有自己的细分词，按成员的
+        #    **其他归属**映射到固定子类（旅游酒店/零售百货/饮料酒水/服装家纺）。
+        #    覆盖而不是补充：横切主线要看的是「它属于哪条线」，不是成员的细节标签。
+        if clusters:
+            code_themes: dict[str, list[str]] = {}
+            for theme, members in clusters.items():
+                for m in members:
+                    code_themes.setdefault(m["code"], []).append(theme)
+            for theme, members in clusters.items():
+                if theme in self._kpl_themes:
+                    continue          # 框架题材自己有细分，不动
+                for m in members:
+                    bucket = _cross_bucket(theme, code_themes.get(m["code"], []))
+                    if bucket:
+                        m["sub_tags"] = bucket
+
         log.info(
             "涨停原因聚类: %d 只涨停 -> %d 个题材锚点（>=%d 只 %d 个），补全+归并后 %d 个题材",
             len(stocks), before, self.min_size, len(anchors), len(clusters),
@@ -409,7 +484,10 @@ class ReasonClusterer(Clusterer):
           4. 都没命中 → 保留原词独立成题材，二级留空
         """
         for pat, family in self._patterns:
-            if pat in word:
+            # 去引号后再匹配：市场写「羊字辈」和「“羊”字辈」是同一条线，
+            # 但带中文引号的写法字面不含 pattern，会漏掉（泉阳泉的「阳字辈」同理）
+            norm = word.replace('"', "").replace("'", "").replace("“", "").replace("”", "")
+            if pat in word or pat in norm:
                 return [(family, "")]
         perf = _performance_theme(word)
         if perf:

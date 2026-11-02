@@ -21,6 +21,22 @@ from src.storage.snapshot_repo import SnapshotRepo
 
 log = get_logger(__name__)
 
+# akshare 是否可用（模块级缓存）。回填 100+ 天时每天都会走 _enrich_from_em，
+# 不缓存的话会抛 100+ 次同一个 ImportError，日志被刷满还拖慢回填。
+_EM_AVAILABLE: bool | None = None
+
+
+def em_available() -> bool:
+    global _EM_AVAILABLE
+    if _EM_AVAILABLE is None:
+        try:
+            import akshare  # noqa: F401
+            _EM_AVAILABLE = True
+        except Exception:
+            _EM_AVAILABLE = False
+            log.info("akshare 未安装，封单占比/换手率/流通市值将缺省（显示 -）")
+    return _EM_AVAILABLE
+
 
 class Pipeline:
     def __init__(self, cfg: Config | None = None):
@@ -180,6 +196,7 @@ class Pipeline:
         log.info("[%s] 采集完成: 涨停 %d 只, 炸板 %d 只, 异动 %d 只, 连板状态 %d 只",
                  trade_date, len(zt), len(zb), len(strong), len(new_state))
         self._save_breadth(trade_date, len(zt))
+        self._save_volume(trade_date, is_intraday)
         self._mark_snapshot(trade_date, is_intraday)
         return {
             "zt": len(zt), "zhaban": len(zb), "strong": len(strong),
@@ -260,12 +277,63 @@ class Pipeline:
         except Exception as e:                       # 宽度失败不能影响采集主流程
             log.warning("[%s] 情绪宽度计算失败: %s", trade_date, e)
 
-    def _enrich_from_em(self, zt: list, trade_date: date) -> None:
+    def _save_volume(self, trade_date: date, is_intraday: bool) -> None:
+        """把全市场快照的成交量落到 daily_volume（0 额外请求）。
+
+        快照是实时的，只有「最近一个交易日」能落；历史日靠个股日K回补
+        （main.py volfill）。紧跟 _save_breadth 调用，25s TTL 缓存命中，
+        不会重复打接口。
+        """
+        try:
+            latest = self._resolve_day(date.today())["trade_date"]
+        except Exception:
+            latest = trade_date
+        if trade_date != latest:
+            return
+        try:
+            from src.datasources import fuyao_api as fy
+            from src.storage.volume_repo import VolumeRepo
+
+            snap = fy.all_a_share_snapshot()
+            if not snap:
+                log.warning("[%s] 全市场快照为空，跳过成交量落库", trade_date)
+                return
+            min_total = int(self.cfg.get("volume.min_total", 4000))
+            if len(snap) < min_total:
+                log.warning("[%s] 快照只有 %d 只（<%d），视为不完整，不落库",
+                            trade_date, len(snap), min_total)
+                return
+            rows = []
+            for ticker, it in snap.items():
+                code = str(ticker).split(".")[0]
+                try:
+                    rows.append((
+                        code,
+                        float(it.get("volume") or 0),
+                        float(it.get("turnover") or 0),
+                        float(it.get("last_price") or 0),
+                        float(it.get("prev_price") or 0),
+                    ))
+                except (TypeError, ValueError):
+                    continue
+            n = VolumeRepo(self.db).save_day(
+                trade_date.isoformat(), rows,
+                is_snapshot=1 if is_intraday else 0, source="snapshot")
+            log.info("[%s] 全市场成交量落库 %d 行（快照 %d 只%s）",
+                     trade_date, n, len(snap), "，盘中不完整" if is_intraday else "")
+        except Exception as e:                       # 落量失败不能影响采集主流程
+            log.warning("[%s] 成交量落库失败（不影响采集）: %s", trade_date, e)
+
+    def _enrich_from_em(self, zt: list, trade_date: date) -> int:
         """东财补字段：流通市值、换手率（成交额已有，全市场快照已补）。
 
         同花顺涨停池/快照均不含这两个字段，而「封单流通占比」「合理换手」是
         龙头排序的核心因子，必须保留东财来源补全。失败不影响主链路（因子缺省=0）。
+
+        返回东财池的股票数（0 = 该日期东财没数据，回填时用它做熔断）。
         """
+        if not em_available():
+            return 0
         try:
             from src.datasources.akshare_ds import AkshareSource
 
@@ -281,8 +349,10 @@ class Pipeline:
                     if s.amount <= 0:
                         s.amount = em_s.amount
             log.info("[enrich] 东财补字段完成，匹配 %d/%d", len(em_pool), len(zt))
+            return len(em_pool)
         except Exception as e:
             log.warning("[enrich] 东财补字段失败（因子将缺省）: %s", e)
+            return 0
 
     # ------------------------------------------------ 步骤 2：概念缓存
     def refresh_concepts(self, force: bool = False) -> int:
@@ -316,7 +386,10 @@ class Pipeline:
         targets = [d for d in trading if d < today][-days:]
 
         src = FuyaoSource()
-        done, skipped = [], 0
+        done, skipped, failed, empty = [], 0, [], []
+        # 东财涨停池只保留最近两三个交易日，历史日期必然返空。
+        # 连续 3 天拿不到就熔断，否则回填 100+ 天要白等 100+ 次请求。
+        em_miss, em_off = 0, False
         for d_str in targets:
             d = date(int(d_str[:4]), int(d_str[4:6]), int(d_str[6:8]))
             if self.repo.has_date(d):
@@ -326,19 +399,31 @@ class Pipeline:
                 zt = src.get_zt_pool(d)
                 zb = src.get_zt_pool_zhaban(d)
                 if not zt:
+                    empty.append(d_str)
                     log.info("[backfill] %s 无涨停数据，跳过", d)
                     continue
-                self._enrich_from_em(zt, d)  # 东财历史池补流通市值/换手率/成交额
+                if not em_off:
+                    if self._enrich_from_em(zt, d) > 0:
+                        em_miss = 0
+                    else:
+                        em_miss += 1
+                        if em_miss >= 3:
+                            em_off = True
+                            log.info("[backfill] 东财历史池连续 %d 天无数据"
+                                     "（只保留最近几日），后续跳过因子补全", em_miss)
                 self.repo.save_zt_pool(zt, sealed=True, source="fuyao")
                 self.repo.save_zt_pool(zb, sealed=False, source="fuyao")
                 self._analyze(d, to_clipboard=False)
                 done.append(d_str)
                 log.info("[backfill] %s 完成：涨停 %d 只，炸板 %d 只", d, len(zt), len(zb))
             except Exception as e:
+                # 失败必须留痕：一次补 100+ 天，只靠日志翻不出漏了哪几天
+                failed.append({"date": d_str, "error": str(e)[:200]})
                 log.error("[backfill] %s 失败: %s", d, e)
-        log.info("[backfill] 完成 %d 个交易日（跳过已有 %d，共 %d）",
-                 len(done), skipped, len(targets))
-        return {"done": done, "skipped": skipped, "total": len(targets)}
+        log.info("[backfill] 完成 %d 个交易日（跳过已有 %d，空 %d，失败 %d，共 %d）",
+                 len(done), skipped, len(empty), len(failed), len(targets))
+        return {"done": done, "skipped": skipped, "empty": empty,
+                "failed": failed, "total": len(targets)}
 
     # ------------------------------------------------ 步骤 3：复盘计算
     def run(self, trade_date: date, to_clipboard: bool = True) -> dict:
@@ -487,6 +572,18 @@ class Pipeline:
                                   key=lambda kv: (-kv[1]["member_count"], -kv[1]["zt_count"])))
         log.info("聚类完成: %d 个题材（涨停+异动降序）: %s", len(theme_stats),
                  ", ".join(f"{k}:{v['zt_count']}" for k, v in list(theme_stats.items())[:8]))
+
+        # 爆量题材：跟着复盘一起刷新（改了题材框架重算时也能一并更新）
+        try:
+            from src.core import volume_surge as vs
+            vr = vs.scan_day(self.cfg, self.db, self.cal, trade_date)
+            if vr.get("ok"):
+                log.info("[%s] 爆量题材: %d 只命中 → %d 个板块",
+                         trade_date, vr.get("show", 0), vr.get("themes", 0))
+            else:
+                log.info("[%s] 跳过爆量扫描: %s", trade_date, vr.get("reason"))
+        except Exception as e:                       # 爆量失败不能影响复盘主流程
+            log.warning("[%s] 爆量扫描失败（不影响复盘）: %s", trade_date, e)
 
         # 导出：CSV 是龙标报表；剪贴板给「所有题材的全部成分股」
         csv_path = export_csv(leaders, trade_date, self.cfg)

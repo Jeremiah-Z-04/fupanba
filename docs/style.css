@@ -626,6 +626,45 @@ h2 .hint, h2 span { color: var(--text-tertiary); font-size: 12px; font-weight: 4
 #leaderTable tbody tr:hover { background: var(--fill-line); }
 #leaderTable tbody tr:last-child td { border-bottom: none; }
 
+/* ---------- 爆量题材（只读版，与桌面版保持同一套外观） ---------- */
+#burstTable { width: 100%; border-collapse: separate; border-spacing: 0; }
+#burstTable th {
+  text-align: left; padding: 10px 8px; white-space: nowrap;
+  color: var(--text-tertiary); font-size: 12px; font-weight: 500;
+  border-bottom: 1px solid var(--glass-border);
+}
+#burstTable td {
+  padding: 11px 8px; white-space: nowrap;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--fill-line);
+}
+#burstTable tbody tr { transition: background 0.15s var(--ease-expo); }
+#burstTable tbody tr:hover { background: var(--fill-line); }
+#burstTable tbody tr:last-child td { border-bottom: none; }
+
+.left-scope { margin-bottom: var(--s2); }
+.seg-mult { margin-bottom: var(--s2); }
+/* .seg 自带 display:inline-flex，会盖掉 hidden 的 display:none —— 必须显式压回 */
+.seg[hidden] { display: none; }
+.bd-hint.warn { color: var(--gold); }
+
+.theme-item .t-ratio {
+  font-style: normal; margin-left: 5px;
+  color: var(--gold); font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+body.burst #unassignedBox { display: none !important; }
+
+.burst-ratio { color: var(--gold); font-weight: 700; font-variant-numeric: tabular-nums; }
+.burst-vol { color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+.burst-date { color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
+.burst-src {
+  margin-left: 5px; font-size: 10px; padding: 1px 6px;
+  border-radius: var(--r-pill); background: var(--fill-2);
+  color: var(--text-tertiary);
+}
+
 .rank-badge {
   display: inline-block; min-width: 40px; text-align: center;
   background: var(--up); color: #fff;
